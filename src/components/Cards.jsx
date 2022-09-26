@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 export default function Cards({ data }) {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   function handleDelete(e) {
     e.preventDefault();
@@ -17,21 +18,23 @@ export default function Cards({ data }) {
 
   return (
     <div>
-      <div>
-        <button
-          name={data.id}
-          value={data.id}
-          onClick={(e) => {
-            handleDelete(e);
-          }}
-        >
-          Eliminar
-        </button>
+      {user.length ? (
+        <div>
+          <button
+            name={data.id}
+            value={data.id}
+            onClick={(e) => {
+              handleDelete(e);
+            }}
+          >
+            Eliminar
+          </button>
 
-        <Link to={`/PutArtwork/${data.id}`}>
-          <button>Modificar</button>
-        </Link>
-      </div>
+          <Link to={`/PutArtwork/${data.id}`}>
+            <button>Modificar</button>
+          </Link>
+        </div>
+      ) : null}
 
       <div className={styles.card}>
         <Link to={`/Products/${data.id}`}>
