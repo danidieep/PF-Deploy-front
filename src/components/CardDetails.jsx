@@ -15,7 +15,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function CardDetails(props) {
   const { id } = useParams();
-  const { user, getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
+
+  const user = JSON.parse(localStorage.getItem("user"))
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.productDetails);
@@ -23,21 +25,21 @@ export default function CardDetails(props) {
   const [cantCompr, setCantCompr] = useState(0);
 
   useEffect(() => {
-    dispatch(cleanProductId())
-    dispatch(getProductById(id))
-  }, [])
+    dispatch(cleanProductId());
+    dispatch(getProductById(id));
+  }, []);
 
   const addToCartOrDelete = async () => {
-    const token = getAccessTokenSilently();
-    const email = user.email;
+    
+    const email = user[0].email;
     const ArtInCuesiton = state.carrito.filter(
       (element) => element === product[0].title
     );
     if (ArtInCuesiton.length) {
-      deleteProductFromCarrito({ artId: product[0].id, email }, token);
+      deleteProductFromCarrito({ artId: product[0].id, email }, );
       alert("Deleted from cart");
     } else {
-      addProductToCarrito({ artId: product[0].id, email }, token);
+      addProductToCarrito({ artId: product[0].id, email }, );
       alert("Added to cart");
     }
   };
@@ -70,16 +72,23 @@ export default function CardDetails(props) {
             <h1 className={styles.logo}>Artket</h1>
           </div>
           <div></div>
-          <div>
+
+          {user.length?<div>
+            <Link to="/Profile">
             <button className={styles.btnUser}>
               <img src="https://i.imgur.com/LtoCkNW.png" alt="" />
             </button>
+            </Link>
             <Link to="/ShopCart">
               <button className={styles.btnCarrito}>
                 <img src="https://i.imgur.com/WsQE0Cn.png" alt="" />
               </button>
             </Link>
           </div>
+          :
+          false
+}
+
         </div>
       </header>
       <div id="conteinerDetail">
@@ -102,11 +111,11 @@ export default function CardDetails(props) {
                 <div className={styles.buttonAddCartPos}>
                   {/* <button onClick={()=>addCount("-")}>-</button> */}
 
-                  {true ? (
+                  {user.length ? (
                     <button
                       className={styles.buttonAddCart}
                       onClick={() => {
-                        if (user) {
+                        if (user.length) {
                           addToCartOrDelete();
                         } else {
                           alert("Login required");
@@ -115,14 +124,15 @@ export default function CardDetails(props) {
                     >
                       Add to cart
                     </button>
-                  ) : (
-                    <button
-                      className={styles.buttonAddCart}
-                      onClick={addToCartOrDelete}
-                    >
-                      Delete from cart
-                    </button>
-                  )}
+                  ) : false
+                  //   <button
+                  //     className={styles.buttonAddCart}
+                  //     onClick={addToCartOrDelete}
+                  //   >
+                  //     Delete from cart
+                  //   </button>
+                  // )}
+                    }
                   {/* <button onClick={()=>addCount("+")}>+</button> */}
                   {/* <span>cantidad a comprar: {cantCompr}</span> */}
                 </div>
