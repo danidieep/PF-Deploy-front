@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RegisterUser, sendUserInfo } from "../actions/index";
+import { RegisterUser } from "../actions/index";
 import styles from "./ModulesCss/LogIn.module.css"
 
 export default function Register() {
@@ -61,7 +61,7 @@ export default function Register() {
     if (validatorEmail(input.email)) {
       if (input.name.length > 0 && input.lastname.length > 0 && input.password.length > 0 && input.dateBorn.length > 0) {
         RegisterUser(input);
-        // window.location.href = "/LocalLogin"
+        window.location.href = "/LocalLogin"
         setInput({
           name: "",
           lastname: "",

@@ -12,8 +12,7 @@ import {
   DELETE_ARTWORKS,
   ADD_FILTER_MEDIUM,
   FILTER_BY_MEDIUM,
-  ADD_PRICE_TYPE,
-  FIND_USER_BY_ID,
+  ADD_PRICE_TYPE, FIND_USER_BY_ID,
   ADD_FILTER_ARTIST,
   FILTER_BY_ARTIST,
   GET_ARTISTS,
@@ -25,12 +24,12 @@ import {
   ORDER_BY_PRICE,
   ADD_FILTERS,
   SET_USER,
-  UPDATE_USER,
+  UPDATE_USER
 } from "./action-types.js";
 
 export function deleteArtwork(id) {
   return async function (dispatch) {
-    let json = await axios.put("artworks/delete/" + id);
+    let json = await axios.put("https://artket-pf-deploy.herokuapp.com/artworks/delete/" + id);
 
     return dispatch({
       type: DELETE_ARTWORKS,
@@ -40,16 +39,16 @@ export function deleteArtwork(id) {
 }
 export function putArtwork(payload) {
   return async function (dispatch) {
-    let json = await axios.put("/artworks/" + payload.id, payload);
+    let json = await axios.put("https://artket-pf-deploy.herokuapp.com/artworks/" + payload.id, payload);
     return json;
   };
 }
 
-export function getProducts(setLoading) {
+export function getProducts() {
   return async function (dispatch) {
-    setLoading(true);
-    let json = await axios.get("/artworks");
-    setLoading(false);
+
+    let json = await axios.get("https://artket-pf-deploy.herokuapp.com/artworks");
+ 
     return dispatch({
       type: GET_PRODUCTS,
       payload: json.data,
@@ -64,7 +63,7 @@ export const RegisterUser = async (payload) => {
 export const getProductByName = (payload) => {
   return async function (dispatch) {
     try {
-      let json = await axios.get("/artworks?title=" + payload);
+      let json = await axios.get("https://artket-pf-deploy.herokuapp.com/artworks?title=" + payload);
 
       return dispatch({
         type: GET_PRODUCT_BY_NAME,
@@ -81,7 +80,7 @@ export const getProductByName = (payload) => {
 
 export const getProductById = (id) => {
   return async function (dispatch) {
-    let json = await axios.get("/artworks/" + id);
+    let json = await axios.get("https://artket-pf-deploy.herokuapp.com/artworks/" + id);
 
     return dispatch({
       type: GET_PRODUCT_BY_ID,
@@ -111,7 +110,7 @@ export const showAllProducts = () => {
 
 export const getArtists = () => {
   return async function (dispatch) {
-    let json = await axios.get("/artists");
+    let json = await axios.get("https://artket-pf-deploy.herokuapp.com/artists");
     return dispatch({
       type: GET_ARTISTS,
       payload: json.data,
@@ -176,36 +175,39 @@ export const AddFilters = (payload) => {
 // };
 
 export const deleteProductFromCarrito = async (payload) => {
-  let json = await axios.put("/cart/" + payload);
+  axios.post(`https://artket-pf-deploy.herokuapp.com/cart/delete/${payload.artId}`, { email: payload.email });
 };
 
 export const addProductToCarrito = async (payload) => {
-  axios.post(`/cart/${payload.artId}`, { email: payload.email });
+  axios.post(`https://artket-pf-deploy.herokuapp.com/cart/${payload.artId}`, { email: payload.email });
 };
 
 export const getUser = (data) => {
   return async function (dispatch) {
-    let json = await axios.post(`/users/findorcreate`, data);
+    let json = await axios.post(`https://artket-pf-deploy.herokuapp.com/users/findorcreate`, data);
+    console.log(json.data)
     return dispatch({
       type: GET_USER,
       payload: json.data,
     });
+
+
   };
 };
 
-// export const sendUserInfo = async ({ name, lastname, email, password, dateBorn, role, headers }) => {
-//   await axios.post("/users", {
-//     name, lastname, email, password, dateBorn, role, headers
-//   });
-// };
+export const sendUserInfo = async ({ name, lastname, email, password, dateBorn, role, headers }) => {
+  await axios.post("https://artket-pf-deploy.herokuapp.com/users", {
+    name, lastname, email, password, dateBorn, role, headers
+  });
+};
 
 export function deleteUser(userId) {
-  axios.delete(`users/${userId}`);
+  axios.delete(`https://artket-pf-deploy.herokuapp.com/users/${userId}`);
 }
 
 export const getProductsFromCarritoDB = (payload) => {
   return async function (dispatch) {
-    let json = await axios.get("/cart", {
+    let json = await axios.get("https://artket-pf-deploy.herokuapp.com/cart", {
       headers: {
         payload: payload,
       },
@@ -219,7 +221,7 @@ export const getProductsFromCarritoDB = (payload) => {
 
 export const LogLocal = (payload) => {
   return async function (dispatch) {
-    let json = await axios.post(`/users/findLocalUser`, payload);
+    let json = await axios.post(`https://artket-pf-deploy.herokuapp.com/users/findLocalUser`, payload);
     return dispatch({
       type: LOG_LOCAL,
       payload: json.data,
@@ -233,34 +235,37 @@ export const vaciarUser = () => {
   };
 };
 
+
 export const setUser = () => {
   return {
     type: SET_USER,
-  };
-};
+  }
+}
 
 export const updateUser = (user) => {
   return async function () {
-    await axios.post(`/users/update`, user);
-  };
-};
+    await axios.post(`https://artket-pf-deploy.herokuapp.com/users/update`, user)
+  }
+}
 
 export const findUserById = (id) => {
+
   return async function (dispatch) {
-    let json = await axios.get(`users/${id}`);
+    let json = await axios.get(`https://artket-pf-deploy.herokuapp.com/users/${id}`);
     return dispatch({
       type: FIND_USER_BY_ID,
       payload: json.data,
     });
   };
-};
+}
 
 export function sendEmail(a) {
   return async function (dispatch) {
-    const email = await axios.post("/sendemail", { email: a });
+    const email = await axios.post('https://artket-pf-deploy.herokuapp.com/sendemail', { email: a })
     return dispatch({
       type: SEND_EMAIL,
-      payload: email,
-    });
-  };
+      payload: email
+    })
+  }
+
 }
