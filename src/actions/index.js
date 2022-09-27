@@ -195,11 +195,11 @@ export const getUser = (data) => {
   };
 };
 
-export const sendUserInfo = async ({ name, lastname, email, password, dateBorn, role, headers }) => {
-  await axios.post("https://artket-pf-deploy.herokuapp.com/users", {
-    name, lastname, email, password, dateBorn, role, headers
-  });
-};
+// export const sendUserInfo = async ({ name, lastname, email, password, dateBorn, role, headers }) => {
+//   await axios.post("https://artket-pf-deploy.herokuapp.com/users", {
+//     name, lastname, email, password, dateBorn, role, headers
+//   });
+// };
 
 export function deleteUser(userId) {
   axios.delete(`https://artket-pf-deploy.herokuapp.com/users/${userId}`);
