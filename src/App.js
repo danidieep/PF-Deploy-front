@@ -66,6 +66,10 @@ function App() {
       <Route path="/Profile" component={Profile} />
       <Route path="/ShopCart" component={ShopCart} />
       <Route path="/PutArtwork/:id" component={PutArtwork} />
+      <Route path="/PostArtwork" component={PostArtwork} />
+      <Route path="/Users" component={Users} />
+      <Route path="/PostArtist" component={ArtistsPost} />
+      <Route path="/Favourites" component={Favoritos} />
     </div>
   );
 }
