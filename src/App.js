@@ -12,6 +12,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser, sendUserInfo, setUser } from "./actions";
 import { useEffect } from "react";
 import LoginLocal from "./components/Loginlocal";
+import Users from "./components/Users";
+import PostArtwork from "./components/PostArtwork";
+import ArtistsPost from "./components/ArtistsPost";
+import Favoritos from "./components/Favoritos"
 
 function App() {
   const dispatch = useDispatch();
