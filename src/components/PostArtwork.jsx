@@ -3,51 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { postArtwork, getArtists } from "../actions/index";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
-// function validate(input){
-//     let errors = {}
-//     if(!input.title){
-//       errors.title = 'Se requiere un Nombre'
-//     }
-
-//     if(!input.date){
-//        errors.date = "La fecha requerida";
-//     }
-
-//     if(!input.collecting_institution){
-//         errors.collecting_institution = 'Se requiere una institucion'
-//     }
-
-//     if (!urlImg(input.image)) {
-//        errors.image = "La URL no es valida";
-//     }
-
-//     if(!input.creator){
-//        errors.dimensions = 'Se requiere dimensions'
-//     }
-
-//     if(!input.dimensions){
-//         errors.dimensions = 'Se requiere dimensions'
-//     }
-
-//     if(!input.medio){
-//         errors.medio = 'Se requiere medio'
-//     }
-
-//     if(!input.price){
-//         errors.price = 'Se requiere price'
-//     }
-
-//     return errors
-
-//   }
-
-//    const urlImg = (url) => {
-//      return /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/.test(url);
-//    }
+import styles from "./ModulesCss/LogIn.module.css";
+import { Link } from "react-router-dom";
 
 export default function PostArtwork() {
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -98,7 +59,6 @@ export default function PostArtwork() {
       alert("Debes llenar el Formulario primero");
     } else {
       dispatch(postArtwork(input, role));
-      alert("obra de arte Creada");
     }
 
     setInput({
@@ -135,155 +95,169 @@ export default function PostArtwork() {
       });
   };
 
-  const user = JSON.parse(localStorage.getItem("user"));
-
   return (
-    <Fragment>
-      <button onClick={() => (window.location.href = "/MainPage")}>back</button>
+    <div>
+      <div className={styles.header}>
+        <h1 className={styles.logoForm}>Arteck</h1>
+      </div>
+      <div className={styles.containerRegister}>
+        <div className={styles.formContainer}>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <h1>Add artwork:</h1>
+            <br />
+            {/* -------------------------   TITLE       */}
+            <div className={styles.optForm}>
+              <input
+                type="input"
+                name="title"
+                value={input.title}
+                placeholder="Title"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+              />
+              {errors.title && <p>{errors.title}</p>}
+            </div>
+            <br />
 
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <h1>CREAR OBRA DE ARTE:</h1>
-        <br />
-        {/* -------------------------   TITLE       */}
-        <label>title: </label>
-        <input
-          type="input"
-          name="title"
-          value={input.title}
-          placeholder="title..."
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        />
-        {errors.title && <p>{errors.title}</p>}
+            {/* -------------------------   date       */}
+            <div className={styles.optForm}>
+              <input
+                type="number"
+                name="date"
+                value={input.date}
+                autoComplete="off"
+                placeholder="Year"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+              />
+              {errors.date && <p>{errors.date}</p>}
+            </div>
+            <br />
 
-        <br />
+            {/* -------------------------   collecting_institution       */}
 
-        {/* -------------------------   date       */}
-        <label>año de creacion: </label>
-        <input
-          type="number"
-          name="date"
-          value={input.date}
-          autoComplete="off"
-          placeholder="date..."
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        />
-        {errors.date && <p>{errors.date}</p>}
+            <div className={styles.optForm}>
+              <input
+                type="input"
+                name="collecting_institution"
+                value={input.collecting_institution}
+                autoComplete="off"
+                placeholder="Institution"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+              />
+              {errors.collecting_institution && (
+                <p>{errors.collecting_institution}</p>
+              )}
+            </div>
+            <br />
 
-        <br />
+            {/* -------------------------   image       */}
+            <div className={styles.optForm}>
+              <label>image: </label>
+              <br />
+              {/* <input type="input" name="image" value={input.image} autoComplete="off" placeholder="imagen..." onChange={e => {handleChange(e)}}/> */}
+              <input
+                type="file"
+                name="file"
+                onChange={(e) => {
+                  uploadImage(e);
+                }}
+              />
+              {errors.image && <p>{errors.image}</p>}
+            </div>
+            <br />
 
-        {/* -------------------------   collecting_institution       */}
-        <div>
-          <label>institucion de ubicacion: </label>
-          <input
-            type="input"
-            name="collecting_institution"
-            value={input.collecting_institution}
-            autoComplete="off"
-            placeholder="institucion..."
-            onChange={(e) => {
-              handleChange(e);
-            }}
-          />
-          {errors.collecting_institution && (
-            <p>{errors.collecting_institution}</p>
-          )}
-        </div>
-        <br />
-
-        {/* -------------------------   image       */}
-        <div>
-          <label>image: </label>
-          {/* <input type="input" name="image" value={input.image} autoComplete="off" placeholder="imagen..." onChange={e => {handleChange(e)}}/> */}
-          <input
-            type="file"
-            name="file"
-            onChange={(e) => {
-              uploadImage(e);
-            }}
-          />
-          {errors.image && <p>{errors.image}</p>}
-        </div>
-        <br />
-
-        {/* -------------------------   creator       */}
-        <div>
-          <label>creator: </label>
-          <select
-            onChange={(e) => {
-              handleSelect(e);
-            }}
-          >
-            {artists?.map((a) => {
-              return (
-                <option key={a.id} name={a.name} value={a.name}>
-                  {a.name}
+            {/* -------------------------   creator       */}
+            <div className={styles.optForm}>
+              <select
+                onChange={(e) => {
+                  handleSelect(e);
+                }}
+                defaultValue="base"
+              >
+                <option disabled={true} value="base">
+                  Artist
                 </option>
-              );
-            })}
-          </select>
-          {errors.creator && <p>{errors.creator}</p>}
-        </div>
-        <br />
+                {artists?.map((a) => {
+                  return (
+                    <option key={a.id} name={a.name} value={a.name}>
+                      {a.name}
+                    </option>
+                  );
+                })}
+              </select>
+              {errors.creator && <p>{errors.creator}</p>}
+            </div>
+            <br />
 
-        {/* -------------------------   dimensions       */}
-        <div>
-          <label>dimensions: </label>
-          <input
-            type="input"
-            name="dimensions"
-            value={input.dimensions}
-            autoComplete="off"
-            placeholder="Title..."
-            onChange={(e) => {
-              handleChange(e);
-            }}
-          />
-          {errors.dimensions && <p>{errors.dimensions}</p>}
-        </div>
-        <br />
+            {/* -------------------------   dimensions       */}
+            <div className={styles.optForm}>
+              <input
+                type="input"
+                name="dimensions"
+                value={input.dimensions}
+                autoComplete="off"
+                placeholder="Dimensions"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+              />
+              {errors.dimensions && <p>{errors.dimensions}</p>}
+            </div>
+            <br />
 
-        {/* -------------------------   medio       */}
-        <div>
-          <label>medio: </label>
-          <input
-            type="input"
-            name="medio"
-            value={input.medio}
-            autoComplete="off"
-            placeholder="medio..."
-            onChange={(e) => {
-              handleChange(e);
-            }}
-          />
-          {errors.medio && <p>{errors.medio}</p>}
-        </div>
-        <br />
+            {/* -------------------------   medio       */}
+            <div className={styles.optForm}>
+              <input
+                type="input"
+                name="medio"
+                value={input.medio}
+                autoComplete="off"
+                placeholder="Medium"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+              />
+              {errors.medio && <p>{errors.medio}</p>}
+            </div>
+            <br />
 
-        {/* -------------------------   price       */}
-        <div>
-          <label>price: </label>
-          <input
-            type="input"
-            name="price"
-            value={input.price}
-            autoComplete="off"
-            placeholder="Title..."
-            onChange={(e) => {
-              handleChange(e);
-            }}
-          />
-          {errors.price && <p>{errors.price}</p>}
-          <br></br>
+            {/* -------------------------   price       */}
+            <div className={styles.optForm}>
+              <input
+                type="input"
+                name="price"
+                value={input.price}
+                autoComplete="off"
+                placeholder="Price"
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+              />
+              {errors.price && <p>{errors.price}</p>}
+              <br></br>
+            </div>
+            <br />
+            <button
+              className={styles.buttonRegister}
+              type="submit"
+              onClick={(e) =>
+                handleSubmit(e, user[0].role ? user[0].role : null)
+              }
+            >
+              Crear
+            </button>
+            <br />
+            <Link to="/MainPage">
+              <button className={styles.buttonRegister}>Home</button>
+            </Link>
+          </form>
         </div>
-        <br />
-        <button type="submit" onClick={(e) => handleSubmit(e, user[0].role ? user[0].role : null)}>
-          Crear
-        </button>
-      </form>
-    </Fragment>
+      </div>
+    </div>
   );
 }

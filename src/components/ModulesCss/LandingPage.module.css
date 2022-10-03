@@ -16,9 +16,9 @@
 }
 
 .header {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255);
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 70% 23%;
     height: 4rem;
     align-content: center;
 
@@ -36,17 +36,18 @@
 
 .buttonsLink {
     width: 5rem;
+   
 
 }
 
 .logins {
     background-color: transparent;
-    border: none;
+    border: 0;
     font-size: 1.2rem;
     color: #000000;
     cursor: pointer;
     font-family: 'Merriweather', serif;
-
+    margin: 0 1rem;
 }
 
 .navLading {

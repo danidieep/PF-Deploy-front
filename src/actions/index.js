@@ -8,7 +8,7 @@ import {
   SEND_EMAIL,
   ADD_PRODUCTO_TO_FAVOURITES,
   DELETE_PRODUCTO_FROM_FAVOURITES,
-  GET_FAVOURITES
+  GET_FAVOURITES,
 } from "./action-types.js";
 import {
   GET_USER,
@@ -30,17 +30,80 @@ import {
   ADD_FILTERS,
   SET_USER,
   UPDATE_USER,
+  GET_HISTORY,
+  GET_ALL_ORDERS,
+  GET_ORDERS_USER,
 } from "./action-types.js";
 
-import Toastify from 'toastify-js'
+import { toast, ToastContainer } from "react-toastify";
+
+export const getOrderByUser = (payload) => {
+  return async function (dispatch) {
+    let json = await axios.get(
+      "https://artket-pf-deploy.herokuapp.com/payment/orders",
+      {
+        headers: {
+          payload: payload,
+        },
+      }
+    );
+    return dispatch({
+      type: GET_ORDERS_USER,
+      payload: json.data,
+    });
+  };
+};
+
+export const getAllOrders = () => {
+  return async function (dispatch) {
+    let json = await axios.get(
+      "https://artket-pf-deploy.herokuapp.com/payment/pagos"
+    );
+
+    return dispatch({
+      type: GET_ALL_ORDERS,
+      payload: json.data,
+    });
+  };
+};
+export const getPay = async (payload, user) => {
+  let asd = await axios.post("https://artket-pf-deploy.herokuapp.com/payment", {
+    payload,
+    user,
+  });
+  window.location.href = asd.data;
+};
 
 export function postArtwork(payload, role) {
   return async function (dispatch) {
-    let json = await axios.post("https://artket-pf-deploy.herokuapp.com/artworks/", {
-      payload: payload,
-      role: role,
-    });
-    return json;
+    try {
+      let json = await axios.post(
+        "https://artket-pf-deploy.herokuapp.com/artworks",
+        {
+          payload: payload,
+          role: role,
+        }
+      );
+      toast.success("Artwork created", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (error) {
+      toast.error("Error", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 }
 
@@ -48,27 +111,45 @@ export function deleteArtwork(id, user) {
   // console.log('user data delete artwork');
   return async function (dispatch) {
     // console.log('user data delete artwork');
-    let json = await axios.put("https://artket-pf-deploy.herokuapp.com/artworks/delete/" + id);
-
-    return dispatch({
-      type: DELETE_ARTWORKS,
-      payload: json.data,
-    });
+    try {
+      let json = await axios.put(
+        "https://artket-pf-deploy.herokuapp.com/artworks/delete/" + id
+      );
+      toast.info("Arwork deleted", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return dispatch({
+        type: DELETE_ARTWORKS,
+        payload: json.data,
+      });
+    } catch (error) {}
   };
 }
+
 export function putArtwork(payload, role) {
   return async function (dispatch) {
-    let json = await axios.put("https://artket-pf-deploy.herokuapp.com/artworks/" + payload.id, {
-      payload: payload,
-      role: role,
-    });
+    let json = await axios.put(
+      "https://artket-pf-deploy.herokuapp.com/artworks/" + payload.id,
+      {
+        payload: payload,
+        role: role,
+      }
+    );
     return json;
   };
 }
 
 export function getProducts() {
   return async function (dispatch) {
-    let json = await axios.get("https://artket-pf-deploy.herokuapp.com/artworks");
+    let json = await axios.get(
+      "https://artket-pf-deploy.herokuapp.com/artworks"
+    );
 
     return dispatch({
       type: GET_PRODUCTS,
@@ -79,40 +160,69 @@ export function getProducts() {
 
 export const RegisterUser = async (payload) => {
   try {
-    let json = await axios.post("/users", payload);
-    Toastify({
-  text: "This is a toast",
-  duration: 3000,
-  destination: "https://github.com/apvarun/toastify-js",
-  newWindow: true,
-  close: true,
-  gravity: "top", // `top` or `bottom`
-  position: "left", // `left`, `center` or `right`
-  stopOnFocus: true, // Prevents dismissing of toast on hover
-  style: {
-    background: "linear-gradient(to right, #00b09b, #96c93d)",
-  },
-  onClick: function(){} // Callback after click
-}).showToast();
-  
+    let json = await axios.post(
+      "https://artket-pf-deploy.herokuapp.com/users",
+      payload
+    );
+    toast.success("Registering...", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    setTimeout(() => {
+      window.location.href = "/LocalLogin";
+    }, 2000);
   } catch (error) {
-    Toastify({
-      text: "User created",
-      className: "info",
-      style: {
-        background: "linear-gradient(to right, #00b09b, #96c93d)",
-      }
-    }).showToast();
+    toast.error("User allready exist!", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   }
-  
-  
+};
 
+export const RegisterUserFromAdminPanel = async (payload) => {
+  try {
+    let json = await axios.post(
+      "https://artket-pf-deploy.herokuapp.com/users",
+      payload
+    );
+    toast.success("Registering...", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  } catch (error) {
+    toast.error("User allready exist!", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 };
 
 export const getProductByName = (payload) => {
   return async function (dispatch) {
     try {
-      let json = await axios.get("https://artket-pf-deploy.herokuapp.com/artworks?title=" + payload);
+      let json = await axios.get(
+        "https://artket-pf-deploy.herokuapp.com/artworks?title=" + payload
+      );
 
       return dispatch({
         type: GET_PRODUCT_BY_NAME,
@@ -129,7 +239,9 @@ export const getProductByName = (payload) => {
 
 export const getProductById = (id) => {
   return async function (dispatch) {
-    let json = await axios.get("https://artket-pf-deploy.herokuapp.com/artworks/" + id);
+    let json = await axios.get(
+      "https://artket-pf-deploy.herokuapp.com/artworks/" + id
+    );
 
     return dispatch({
       type: GET_PRODUCT_BY_ID,
@@ -159,7 +271,9 @@ export const showAllProducts = () => {
 
 export const getArtists = () => {
   return async function (dispatch) {
-    let json = await axios.get("https://artket-pf-deploy.herokuapp.com/artists");
+    let json = await axios.get(
+      "https://artket-pf-deploy.herokuapp.com/artists"
+    );
     return dispatch({
       type: GET_ARTISTS,
       payload: json.data,
@@ -224,33 +338,42 @@ export const AddFilters = (payload) => {
 // };
 
 export const deleteProductFromCarrito = async (payload) => {
-  axios.post(`https://artket-pf-deploy.herokuapp.com/cart/delete/${payload.artId}`, { email: payload.email });
+  axios.post(
+    `https://artket-pf-deploy.herokuapp.com/cart/delete/${payload.artId}`,
+    { email: payload.email }
+  );
 };
 
 export const addProductToCarrito = async (payload) => {
-  axios.post(`https://artket-pf-deploy.herokuapp.com/cart/${payload.artId}`, { email: payload.email });
-  
+  axios.post(`https://artket-pf-deploy.herokuapp.com/cart/${payload.artId}`, {
+    email: payload.email,
+  });
 };
 
-
-
-
 export const deleteProductFromFavourites = async (payload) => {
-  axios.post(`https://artket-pf-deploy.herokuapp.com/favourites/delete/${payload.artId}`, { email: payload.email });
+  axios.post(
+    `https://artket-pf-deploy.herokuapp.com/favourites/delete/${payload.artId}`,
+    { email: payload.email }
+  );
 };
 
 export const addProductToFavourites = async (payload) => {
-  axios.post(`https://artket-pf-deploy.herokuapp.com/favourites/${payload.artId}`, { email: payload.email });
+  axios.post(
+    `https://artket-pf-deploy.herokuapp.com/favourites/${payload.artId}`,
+    { email: payload.email }
+  );
 };
-
 
 export const getFavourites = (payload) => {
   return async function (dispatch) {
-    let json = await axios.get("https://artket-pf-deploy.herokuapp.com/favourites", {
-      headers: {
-        payload: payload,
-      },
-    });
+    let json = await axios.get(
+      "https://artket-pf-deploy.herokuapp.com/favourites",
+      {
+        headers: {
+          payload: payload,
+        },
+      }
+    );
     return dispatch({
       type: GET_FAVOURITES,
       payload: json.data,
@@ -258,13 +381,12 @@ export const getFavourites = (payload) => {
   };
 };
 
-
-
-
-
 export const getUser = (data) => {
   return async function (dispatch) {
-    let json = await axios.post(`https://artket-pf-deploy.herokuapp.com/users/findorcreate`, data);
+    let json = await axios.post(
+      `https://artket-pf-deploy.herokuapp.com/users/findorcreate`,
+      data
+    );
     return dispatch({
       type: GET_USER,
       payload: json.data,
@@ -310,29 +432,58 @@ export const getProductsFromCarritoDB = (payload) => {
   };
 };
 
+export const getBuyHistory = (payload) => {
+  return async function (dispatch) {
+    let json = await axios.get(
+      "https://artket-pf-deploy.herokuapp.com/history",
+      {
+        headers: {
+          payload: payload,
+        },
+      }
+    );
+    return dispatch({
+      type: GET_HISTORY,
+      payload: json.data,
+    });
+  };
+};
+
 export const LogLocal = (payload) => {
   return async function (dispatch) {
-    
     try {
-      let json = await axios.post(`https://artket-pf-deploy.herokuapp.com/users/findLocalUser`, payload);
+      let json = await axios.post(
+        `https://artket-pf-deploy.herokuapp.com/users/findLocalUser`,
+        payload
+      );
       dispatch({
         type: LOG_LOCAL,
         payload: json.data,
       });
-      window.location.href = "/MainPage"
+      toast.success("Logging...", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setTimeout(() => {
+        window.location.href = "/MainPage";
+      }, 2000);
     } catch (error) {
-      Toastify({
-        text: "User created",
-        className: "info",
-        style: {
-          background: "linear-gradient(to right, #00b09b, #96c93d)",
-        }
-      }).showToast();
+      toast.error("Wrong credentials", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
-
   };
-
- 
 };
 
 export const vaciarUser = () => {
@@ -349,13 +500,18 @@ export const setUser = () => {
 
 export const updateUser = (user) => {
   return async function () {
-    await axios.post(`https://artket-pf-deploy.herokuapp.com/users/update`, user);
+    await axios.post(
+      `https://artket-pf-deploy.herokuapp.com/users/update`,
+      user
+    );
   };
 };
 
 export const findUserById = (id) => {
   return async function (dispatch) {
-    let json = await axios.get(`https://artket-pf-deploy.herokuapp.com/users/${id}`);
+    let json = await axios.get(
+      `https://artket-pf-deploy.herokuapp.com/users/${id}`
+    );
     return dispatch({
       type: FIND_USER_BY_ID,
       payload: json.data,
@@ -365,7 +521,10 @@ export const findUserById = (id) => {
 
 export function sendEmail(a) {
   return async function (dispatch) {
-    const email = await axios.post("https://artket-pf-deploy.herokuapp.com/sendemail", { email: a });
+    const email = await axios.post(
+      "https://artket-pf-deploy.herokuapp.com/sendemail",
+      { email: a }
+    );
     return dispatch({
       type: SEND_EMAIL,
       payload: email,
@@ -388,11 +547,53 @@ export function getUSers(role) {
 }
 
 export async function postArtists(payload, role) {
-  let json = await axios.post("https://artket-pf-deploy.herokuapp.com/artists", {
-    payload: payload,
-    role: role,
-  });
-  return json;
+  try {
+    let json = await axios.post(
+      "https://artket-pf-deploy.herokuapp.com/artists",
+      {
+        payload: payload,
+        role: role,
+      }
+    );
+    toast.success("Artist Added", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  } catch (error) {
+    toast.error("error", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 }
 
+export async function resetPassword(payload) {
+  await axios.post("https://artket-pf-deploy.herokuapp.com/users/restorePassword", payload);
+}
 
+export const banUser = () => {};
+
+export const madeAdminUser = () => {};
+
+export const postAdress = async (payload, email) => {
+  await axios.post("https://artket-pf-deploy.herokuapp.com/adresses", { payload, email });
+};
+
+export const putAdress = async (payload, email) => {
+  await axios.put("https://artket-pf-deploy.herokuapp.com/adresses", { payload, email });
+};
+
+export const getAdress = async (email) => {
+  const adress = await axios.get("https://artket-pf-deploy.herokuapp.com/adresses", { headers: { email } });
+  return adress;
+};
