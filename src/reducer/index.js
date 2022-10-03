@@ -27,7 +27,7 @@ import {
   GET_FAVOURITES,
   GET_HISTORY,
   GET_ALL_ORDERS,
-  GET_ORDERS_USER
+  GET_ORDERS_USER,
 } from "../actions/action-types";
 
 const initialState = {

@@ -33,6 +33,7 @@ import {
   GET_HISTORY,
   GET_ALL_ORDERS,
   GET_ORDERS_USER,
+  GET_ALL_USERS,
 } from "./action-types.js";
 
 import { toast, ToastContainer } from "react-toastify";
@@ -578,7 +579,10 @@ export async function postArtists(payload, role) {
 }
 
 export async function resetPassword(payload) {
-  await axios.post("https://artket-pf-deploy.herokuapp.com/users/restorePassword", payload);
+  await axios.post(
+    "https://artket-pf-deploy.herokuapp.com/users/restorePassword",
+    payload
+  );
 }
 
 export const banUser = () => {};
@@ -586,14 +590,23 @@ export const banUser = () => {};
 export const madeAdminUser = () => {};
 
 export const postAdress = async (payload, email) => {
-  await axios.post("https://artket-pf-deploy.herokuapp.com/adresses", { payload, email });
+  await axios.post("https://artket-pf-deploy.herokuapp.com/adresses", {
+    payload,
+    email,
+  });
 };
 
 export const putAdress = async (payload, email) => {
-  await axios.put("https://artket-pf-deploy.herokuapp.com/adresses", { payload, email });
+  await axios.put("https://artket-pf-deploy.herokuapp.com/adresses", {
+    payload,
+    email,
+  });
 };
 
 export const getAdress = async (email) => {
-  const adress = await axios.get("https://artket-pf-deploy.herokuapp.com/adresses", { headers: { email } });
+  const adress = await axios.get(
+    "https://artket-pf-deploy.herokuapp.com/adresses",
+    { headers: { email } }
+  );
   return adress;
 };
