@@ -79,7 +79,7 @@ export const getOrderByUser = (payload) => {
 export const getAllOrders = () => {
   return async function (dispatch) {
     let json = await axios.get(
-      "https://artket-pf-deploy.herokuapp.com/payment/pagos"
+      "https://artket-pf-deploy.herokuapp.com/payment/orden"
     );
 
     return dispatch({
