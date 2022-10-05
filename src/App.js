@@ -17,13 +17,13 @@ import Users from "./components/Users";
 import ArtistsPost from "./components/ArtistsPost";
 import Favoritos from "./components/Favoritos";
 import ResetPassword from "./components/ResetPassword";
-import ProfileEdit from "./components/ProfileEdit";
 import Security from "./components/Security";
 import PayForm from "./components/PayForm";
 import AllUserOrders from "./components/AllUserOrders";
 import OrderByUser from "./components/OrderByUser";
 import ArtworksSoldout from "./components/ArtworksSoldout";
 import UserBanned from "./components/UserBanned";
+import EditProfile from './components/EditProfile'
 
 function App() {
   const dispatch = useDispatch();
@@ -111,8 +111,8 @@ function App() {
       <Route path="/Favourites" component={Favoritos} >
       {isAuthenticated && !uls.length?<UserBanned/> : <Favoritos/>}
       </Route>
-      <Route path="/ProfileEdit" component={ProfileEdit} >
-      {isAuthenticated && !uls.length?<UserBanned/> : <ProfileEdit/>}
+      <Route path="/ProfileEdit" component={EditProfile} >
+      {isAuthenticated && !uls.length?<UserBanned/> : <EditProfile/>}
       </Route>
       <Route path="/Security/" component={Security} >
       {isAuthenticated && !uls.length?<UserBanned/> : <Security/>}

@@ -20,7 +20,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { GiSandsOfTime } from "react-icons/gi"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 
-export default function ProfileEdit() {
+export default function EditProfile() {
   const data = useAuth0();
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
