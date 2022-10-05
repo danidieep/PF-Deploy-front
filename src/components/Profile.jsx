@@ -35,6 +35,10 @@ export default function Profile() {
   };
   const onlyCharacters = /^[a-zA-Z\s]+$/;
 
+  useEffect(()=>{
+
+  },[])
+
   const user = JSON.parse(localStorage.getItem("user"));
 
   const delete_User = () => {
