@@ -23,7 +23,7 @@ import { BsFillCartFill } from "react-icons/bs"
 import LogOut from "./LogOut"
 import { GiSandsOfTime } from "react-icons/gi"
 import { BsFillBagCheckFill } from "react-icons/bs"
-
+import swal from "sweetalert";
 
 
 export default function CardDetails(props) {
@@ -149,27 +149,11 @@ export default function CardDetails(props) {
   };
 
   function alertAddToCarrito() {
-    toast.success("Adding to cart!", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    swal("Good job!", "Artwork added to cart!", "success")
   }
 
   function alertDeleteFromCarritoAtDetails() {
-    toast.success("Deleting from cart!", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    swal(":C", "Artwork deleted from cart!", "success")
   }
 
   function alertAddtoFavouritesAtDetails() {

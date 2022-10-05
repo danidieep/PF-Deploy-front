@@ -279,7 +279,7 @@ export default function Users() {
           </div>
         </div>
 
-        {state.users.length ? (
+        {state.users?.length ? (
           <div className={styles.panelRight}>
             <div className={styles.optionsUser}>
               {state.users.map((e) => {
