@@ -63,11 +63,11 @@ export const getOrderByUser = (payload) => {
   return async function (dispatch) {
     let json = await axios.get(
       "https://artket-pf-deploy.herokuapp.com/payment/orden",
-      {
-        headers: {
-          payload: payload,
-        },
-      }
+      // {
+      //   headers: {
+      //     payload: payload,
+      //   },
+      // }
     );
     return dispatch({
       type: GET_ORDERS_USER,

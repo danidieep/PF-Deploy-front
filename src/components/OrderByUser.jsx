@@ -29,6 +29,7 @@ export default function OrderByUser() {
   let state = {
     order: "",
   };
+  
   function subirAlState(event) {
     state.order = event.target.value.toLowerCase();
   }

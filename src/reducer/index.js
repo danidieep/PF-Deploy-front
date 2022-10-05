@@ -112,6 +112,7 @@ export default function Reducer(state = initialState, { type, payload }) {
         orderUserFiltered: payload,
       };
     }
+    
     case GET_PRODUCTS: {
       return {
         ...state,
@@ -316,7 +317,7 @@ export default function Reducer(state = initialState, { type, payload }) {
         users: payload,
       };
     }
-    
+
     case GET_ONE_ORDER: {
       return {
         ...state,
