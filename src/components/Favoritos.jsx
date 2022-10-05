@@ -9,6 +9,7 @@ import LogOut from "./LogOut";
 import { BsFillHeartFill } from "react-icons/bs"
 import { BsFillCartFill } from "react-icons/bs"
 import { BsFillBagCheckFill } from "react-icons/bs";
+import swal from 'sweetalert'
 
 
 

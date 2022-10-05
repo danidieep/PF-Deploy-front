@@ -31,6 +31,7 @@ import { BsFillCartFill } from "react-icons/bs";
 import { BsFillBagCheckFill } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import { Loader } from "./Loader";
+import swal from 'sweetalert'
 
 let ProductsPorPage = 6;
 

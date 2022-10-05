@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import styles from "./ModulesCss/LogIn.module.css";
 import { toast } from "react-toastify";
+import swal from 'sweetalert'
+
 
 export default function PayForm(data) {
   function validate(input) {
