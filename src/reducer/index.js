@@ -316,6 +316,7 @@ export default function Reducer(state = initialState, { type, payload }) {
         users: payload,
       };
     }
+    
     case GET_ONE_ORDER: {
       return {
         ...state,
@@ -324,6 +325,7 @@ export default function Reducer(state = initialState, { type, payload }) {
         ),
       };
     }
+
     case FILTER_ORDER_REJECTED: {
       return {
         ...state,

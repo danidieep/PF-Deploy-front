@@ -38,10 +38,7 @@ export default function AllUserOrders() {
     dispatch(getAllOrders());
   }, []);
 
-  useEffect(() => {
-    dispatch(getAllOrders());
-  }, []);
-
+  
   const allOrders = useSelector((state) => state.allOrdersFiltered);
   const oneOrder = useSelector((state) => state.getOneOrder);
 
@@ -83,7 +80,7 @@ export default function AllUserOrders() {
               <body>Date: {oneOrder[0].date_created}</body>
               <body>Total amount: {oneOrder[0].paymentAmount}</body>
               <body>Order: {oneOrder[0].adress}</body>
-              {oneOrder[0]?.items?.map((e) => {
+              {oneOrder[0].items?.map((e) => {
                 return (
                   <div className={styles.artworksBox} key={e.id}>
                     <div className={styles.artworksBox_img}>

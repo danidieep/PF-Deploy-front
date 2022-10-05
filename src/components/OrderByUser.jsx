@@ -45,7 +45,6 @@ export default function OrderByUser() {
     dispatch(getOrderUserDetail(order));
   }
 
-  {console.log(user)}
   return (
 
     <div className={styles.container}>
@@ -87,7 +86,7 @@ export default function OrderByUser() {
               <body>Total amount: {oneOrder[0].paymentAmount}</body>
               <body>Order: {oneOrder[0].adress}</body>
               {/* <body>Payment details: {oneOrder[0].paymentDetail}</body> */}
-              {oneOrder[0].items.map((e) => {
+              {oneOrder[0].items?.map((e) => {
                 return (
                   <div className={styles.artworksBox} key={e.id}>
                     <div className={styles.artworksBox_img}>
