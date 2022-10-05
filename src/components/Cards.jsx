@@ -49,7 +49,7 @@ export default function Cards({ data }) {
 
           {user.length ? (
             user[0].role ? (
-              <div>
+              <div className={styles.buttonsPos}>
 
                 <button
                   className={styles.buttons}

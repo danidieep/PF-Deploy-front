@@ -52,14 +52,16 @@
 
 .arts_box {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
+  margin: auto;
 }
 
 .image {
-  width: 10rem;
+  min-width: 10rem;
   max-height: 10rem;
+  margin: auto;
 }
 
 .arts_data {
@@ -68,4 +70,12 @@
   height: 15rem;
   margin: 3rem;
   border-radius: 10%;
+}
+
+.arts_dataContainer {
+  margin: auto;
+}
+
+.titleDate {
+  min-height: 4rem;
 }

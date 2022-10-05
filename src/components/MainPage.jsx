@@ -434,7 +434,7 @@ export default function MainPage(props) {
                       setCurrent(i + 1);
                     }}
                     className={styles.button31Paginado}
-                    style={i+1===current?{backgroundColor:"white",color:"black"}:{backgroundColor:"black"}}
+                    style={i+1===current?{ backgroundColor: "rgb(220 175 175)", color: "black" } : { backgroundColor: "black" }}
                   >
                     {i + 1}
                   </button>

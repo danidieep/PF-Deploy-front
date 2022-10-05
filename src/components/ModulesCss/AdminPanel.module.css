@@ -1,9 +1,9 @@
 .container {
-  background: #faeae8;
+  background: white;
   margin: 0 auto;
   width: 90%;
   margin-top: 5rem;
-  color: rgb(81, 70, 70);
+  color: rgb(0, 0, 0);
   font-family: "Euphoria Script", cursive;
   font-size: 1.2rem;
   box-shadow: 0 0 2rem rgb(217, 158, 158);
@@ -15,12 +15,25 @@
   height: auto;
   background-color: rgba(253, 253, 252, 0.7);
   border-radius: 5px;
+
 }
 
 .buttonsBox {
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   margin: 0 auto;
+}
+
+@media (max-width: 414px) {
+  .buttonsBox {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+  }
 }
 
 .buttons {

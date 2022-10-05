@@ -64,7 +64,7 @@ button {
 @media (max-width: 414px) {
     .logo {
         margin: auto;
-        padding-right: 1rem;
+        margin-left: -1.8rem;
     }
 }
 
@@ -84,7 +84,7 @@ button {
     border-radius: 4px;
     width: 28%;
     color: white;
-    background-color:  rgb(176, 119, 119);;
+    background-color: black;
     margin: auto;
     display: flex;
     flex-flow: row wrap;
@@ -241,11 +241,12 @@ button {
     0% {
         margin-left: -10%;
     }
-    50%{
+
+    50% {
         margin-left: -850%;
     }
 
-    100%{
+    100% {
         margin-left: -10%;
     }
 
@@ -335,7 +336,7 @@ button {
     background-color: transparent;
     border: none;
     width: 7rem;
-    
+
 
 }
 
@@ -413,8 +414,8 @@ button {
 
 }
 
-.button31Paginado:hover{
-    background-color: rgb(255, 255, 255);
+.button31Paginado:hover {
+    background-color: rgb(220, 175, 175);
     color: rgb(0, 0, 0);
 }
 
@@ -595,7 +596,7 @@ form .formNewsletterBox {
 .menuVert>li>button {
     display: block;
     z-index: inherit;
-    color: rgb(222, 204, 204);
+    color: white;
     text-decoration: none;
 }
 
@@ -605,19 +606,19 @@ form .formNewsletterBox {
     position: absolute;
     display: none;
     list-style: none;
-    background-color: rgb(176, 119, 119);;
+    background-color: black;
     border-radius: 3px;
 
 }
 
 .menuHor li:hover .menuVert {
     display: block;
-    color:  rgb(222, 204, 204);
+    color: #000000;
 }
 
 .menuVert li a {
     display: block;
-    color:  rgb(222, 204, 204);
+    color: white;
     padding: 15px 15px 15px 20px;
     text-decoration: none;
 
@@ -625,7 +626,7 @@ form .formNewsletterBox {
 
 
 .buttonsProf {
-    background-color: rgb(176, 119, 119);;
+    background-color: black;
     cursor: pointer;
     transition: 0.2s;
     width: 6.5rem;
@@ -673,21 +674,22 @@ form .formNewsletterBox {
     font-size: 30px;
 }
 
-.imagenCarrusel{
+.imagenCarrusel {
     margin: 0.6rem;
     padding: 1rem;
     background-color: #e9d3d0;
     border-radius: 1rem;
     width: 70rem;
-transition: 0.3s;
-cursor: pointer;
-border: solid 1px;
-   
+    transition: 0.3s;
+    cursor: pointer;
+    border: solid 1px;
+
 }
-.imagenCarrusel:hover{
+
+.imagenCarrusel:hover {
     margin: 0.6rem;
     padding: 1rem;
-       border-radius: 1rem;
+    border-radius: 1rem;
     width: 70rem;
     scale: 1.2;
     transition: 0.3s;
