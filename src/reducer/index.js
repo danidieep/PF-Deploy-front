@@ -319,8 +319,8 @@ export default function Reducer(state = initialState, { type, payload }) {
     case GET_ONE_ORDER: {
       return {
         ...state,
-        getOneOrder: state.allOrders.filter(
-          (e) => e.orderId === Number(payload)
+        getOneOrder: state.allOrders?.filter(
+          (e) => e.orderId == payload
         ),
       };
     }
