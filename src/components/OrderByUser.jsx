@@ -45,7 +45,9 @@ export default function OrderByUser() {
     dispatch(getOrderUserDetail(order));
   }
 
+  {console.log(user)}
   return (
+
     <div className={styles.container}>
       <Link to="/MainPage">
         <div className={styles.header}>
