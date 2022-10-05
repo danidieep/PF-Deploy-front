@@ -5,6 +5,7 @@ import { useState } from "react";
 import styles from "./ModulesCss/LogIn.module.css";
 import { Link } from "react-router-dom";
 import { GiSandsOfTime } from "react-icons/gi";
+import swal from "sweetalert"
 
 export default function ArtistsPost() {
   const dispatch = useDispatch();
