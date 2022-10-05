@@ -57,8 +57,8 @@ export default function MainPage(props) {
   // const user = JSON.parse(localStorage.getItem("user"))
 
   React.useEffect(() => {
-    if (state.allProducts.length === 0) dispatch(getProducts());
-    if (state.artistsList.length === 0) dispatch(getArtists());
+     dispatch(getProducts());
+     dispatch(getArtists());
     applyFilter();
     // if (user && user.length) dispatch(getProductsFromCarritoDB(user[0].email));
     if (userLocalStorage && userLocalStorage.length)
@@ -125,7 +125,6 @@ export default function MainPage(props) {
     dispatch(AddFilters({ type: "medium", name }));
     // dispatch(filterByMedium(type))
     handleReset();
-    console.log(name);
   };
 
   const handleSubscribe = (e) => {

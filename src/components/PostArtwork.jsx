@@ -67,7 +67,7 @@ export default function PostArtwork() {
   function handleSubmit(e, role) {
     e.preventDefault();
     if (Object.keys(errors).length !== 0) {
-      swal("Error", "Complete de data", "error")
+      swal("Error", "Complete the data", "error")
     } else {
       dispatch(postArtwork(input, role));
       desactivado()

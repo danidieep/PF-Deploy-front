@@ -42,6 +42,9 @@ export default function ArtistsPost() {
   function handleSubmit(e, role) {
     e.preventDefault();
 
+    if(input.name===""||input.birthday===""||input.hometown===""){
+      swal("Error", "Complete the data", "error");
+    }
     postArtists(input, role);
     desactivado();
     setInput({
