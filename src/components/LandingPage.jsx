@@ -12,6 +12,9 @@ export default function LandingPage() {
   const { isAuthenticated, user } = useAuth0();
   const userLocalStorage = JSON.parse(localStorage.getItem("user"))
 
+
+
+
   return (
     <div className={styles.container}>
 
@@ -19,7 +22,7 @@ export default function LandingPage() {
 
 
       <div className={styles.header}>
-        <Link><div><button className={styles.aboutus}>About us</button></div></Link>
+        <div></div>
         <LogOut></LogOut>
 
 

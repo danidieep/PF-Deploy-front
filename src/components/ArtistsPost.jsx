@@ -4,6 +4,7 @@ import { postArtists } from "../actions/index";
 import { useState } from "react";
 import styles from "./ModulesCss/LogIn.module.css";
 import { Link } from "react-router-dom";
+import { GiSandsOfTime } from "react-icons/gi";
 
 export default function ArtistsPost() {
   const dispatch = useDispatch();
@@ -11,12 +12,20 @@ export default function ArtistsPost() {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState("");
+  const [estado, setEstado] = useState(false);
 
   const [input, setInput] = useState({
     name: "",
     birthday: "",
     hometown: "",
   });
+
+  const desactivado = () => {
+    setEstado(true);
+    setTimeout(() => {
+      setEstado(false);
+    }, 2500);
+  };
 
   function handleChange(e) {
     setInput({
@@ -28,15 +37,13 @@ export default function ArtistsPost() {
     //     [e.target.name] : e.target.value
     //    }))
   }
+  const user = JSON.parse(localStorage.getItem("user"));
 
   function handleSubmit(e, role) {
     e.preventDefault();
-    if (Object.keys(errors).length !== 0) {
-      alert("Debes llenar el Formulario primero");
-    } else {
-      postArtists(input, role)
-    }
 
+    postArtists(input, role);
+    desactivado();
     setInput({
       name: "",
       birthday: "",
@@ -44,15 +51,14 @@ export default function ArtistsPost() {
     });
   }
 
-  const user = JSON.parse(localStorage.getItem("user"));
-
   return (
-    <div className={styles.containerAll}>
+    <div className={styles.containerAll} >
       <div className={styles.header}>
-        <h1 className={styles.logoForm}>Arteck</h1>
+        <Link to="/MainPage">
+          <h1 className={styles.logoForm}>Arteck</h1>
+        </Link>
       </div>
       <div className={styles.containerResetPw}>
-
         <div className={styles.formContainer}>
           <form>
             <h2 className={styles.LoginMsg}>Add artist</h2>
@@ -97,20 +103,20 @@ export default function ArtistsPost() {
                   handleChange(e);
                 }}
               />
-              {errors.hometown && (
-                <p>{errors.hometown}</p>
-              )}
+              {errors.hometown && <p>{errors.hometown}</p>}
             </div>
             <br />
-            <button className={styles.buttonRegister} type="submit" onClick={(e) => handleSubmit(e)}>
-              Add
-            </button><br />
-            <Link to='/MainPage'>
-              <button className={styles.buttonRegister}>Home</button>
-            </Link>
+            <button
+              className={styles.buttonRegister}
+              type="submit"
+              onClick={(e) => handleSubmit(e, user[0].role)}
+            >
+              {!estado ? "Create" : <GiSandsOfTime />}
+            </button>
+            <br />
           </form>
         </div>
       </div>
     </div>
-  )
+  );
 }

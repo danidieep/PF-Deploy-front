@@ -6,9 +6,10 @@ import {
   DELETE_FILTER,
   NOT_FOUND,
   SEND_EMAIL,
-  ADD_PRODUCTO_TO_FAVOURITES,
-  DELETE_PRODUCTO_FROM_FAVOURITES,
   GET_FAVOURITES,
+  GET_ONE_ORDER,
+  FILTER_ORDER_REJECTED,
+  FILTER_ORDER_APROVED,
 } from "./action-types.js";
 import {
   GET_USER,
@@ -29,14 +30,34 @@ import {
   ORDER_BY_PRICE,
   ADD_FILTERS,
   SET_USER,
-  UPDATE_USER,
   GET_HISTORY,
   GET_ALL_ORDERS,
   GET_ORDERS_USER,
-  GET_ALL_USERS,
+  FILTER_ORDER_REJECTED_USER,
+  FILTER_ORDER_APROVED_USER,
+  GET_ONE_ORDER_USER,
 } from "./action-types.js";
 
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import swal from "sweetalert";
+
+export const filterOrderAprovedUser = () => {
+  return {
+    type: FILTER_ORDER_APROVED_USER,
+  };
+};
+export const filterOrderRejectedrUser = () => {
+  return {
+    type: FILTER_ORDER_REJECTED_USER,
+  };
+};
+
+export const getOrderUserDetail = (orderId) => {
+  return {
+    type: GET_ONE_ORDER_USER,
+    payload: orderId,
+  };
+}
 
 export const getOrderByUser = (payload) => {
   return async function (dispatch) {
@@ -67,11 +88,8 @@ export const getAllOrders = () => {
     });
   };
 };
-export const getPay = async (payload, user) => {
-  let asd = await axios.post("https://artket-pf-deploy.herokuapp.com/payment", {
-    payload,
-    user,
-  });
+export const getPay = async (payload, user, adress) => {
+  let asd = await axios.post("https://artket-pf-deploy.herokuapp.com/payment", { payload, user, adress });
   window.location.href = asd.data;
 };
 
@@ -83,30 +101,29 @@ export function postArtwork(payload, role) {
         {
           payload: payload,
           role: role,
-        }
-      );
-      toast.success("Artwork created", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    } catch (error) {
-      toast.error("Error", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-  };
-}
+        });
+        toast.success("Artwork created", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } catch (error) {
+        toast.error("Complete the data", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    };
+  }
 
 export function deleteArtwork(id, user) {
   // console.log('user data delete artwork');
@@ -135,14 +152,35 @@ export function deleteArtwork(id, user) {
 
 export function putArtwork(payload, role) {
   return async function (dispatch) {
+    try {
     let json = await axios.put(
       "https://artket-pf-deploy.herokuapp.com/artworks/" + payload.id,
       {
         payload: payload,
         role: role,
-      }
-    );
-    return json;
+      });
+      toast.success(`Artwork modified`, {
+        position: "top-center",
+        theme: "light",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (error) {
+      toast.success(`Error`, {
+        position: "top-center",
+        theme: "light",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 }
 
@@ -416,7 +454,7 @@ export const sendUserInfo = async ({
 };
 
 export function deleteUser(userId, ban) {
-  axios.post(`users/${userId}`, { ban });
+  axios.post(`https://artket-pf-deploy.herokuapp.com/users/${userId}`, { ban });
 }
 
 export const getProductsFromCarritoDB = (payload) => {
@@ -501,7 +539,7 @@ export const setUser = () => {
 
 export const updateUser = (user) => {
   return async function () {
-    await axios.post(
+    await axios.put(
       `https://artket-pf-deploy.herokuapp.com/users/update`,
       user
     );
@@ -566,7 +604,7 @@ export async function postArtists(payload, role) {
       progress: undefined,
     });
   } catch (error) {
-    toast.error("error", {
+    toast.error("Complete the data", {
       position: "top-center",
       autoClose: 1000,
       hideProgressBar: true,
@@ -610,3 +648,23 @@ export const getAdress = async (email) => {
   );
   return adress;
 };
+
+export const getOneOrder = (orden) => {
+  return {
+    type: GET_ONE_ORDER,
+    payload: orden,
+  };
+};
+
+export const filterOrderAproved = () => {
+  return {
+    type: FILTER_ORDER_APROVED,
+  };
+};
+
+export const filterOrderRejected = () => {
+  return {
+    type: FILTER_ORDER_REJECTED,
+  };
+};
+
