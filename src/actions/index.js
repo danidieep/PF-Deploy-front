@@ -57,17 +57,15 @@ export const getOrderUserDetail = (orderId) => {
     type: GET_ONE_ORDER_USER,
     payload: orderId,
   };
-}
+};
 
 export const getOrderByUser = (payload) => {
   return async function (dispatch) {
     let json = await axios.get(
       "https://artket-pf-deploy.herokuapp.com/payment/orden",
-      // {
-      //   headers: {
-      //     payload: payload,
-      //   },
-      // }
+      {
+        headers: { payload },
+      }
     );
     return dispatch({
       type: GET_ORDERS_USER,
@@ -89,7 +87,11 @@ export const getAllOrders = () => {
   };
 };
 export const getPay = async (payload, user, adress) => {
-  let asd = await axios.post("https://artket-pf-deploy.herokuapp.com/payment", { payload, user, adress });
+  let asd = await axios.post("https://artket-pf-deploy.herokuapp.com/payment", {
+    payload,
+    user,
+    adress,
+  });
   window.location.href = asd.data;
 };
 
@@ -101,29 +103,30 @@ export function postArtwork(payload, role) {
         {
           payload: payload,
           role: role,
-        });
-        toast.success("Artwork created", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      } catch (error) {
-        toast.error("Complete the data", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
-    };
-  }
+        }
+      );
+      toast.success("Artwork created", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (error) {
+      toast.error("Complete the data", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+}
 
 export function deleteArtwork(id, user) {
   // console.log('user data delete artwork');
@@ -153,12 +156,13 @@ export function deleteArtwork(id, user) {
 export function putArtwork(payload, role) {
   return async function (dispatch) {
     try {
-    let json = await axios.put(
-      "https://artket-pf-deploy.herokuapp.com/artworks/" + payload.id,
-      {
-        payload: payload,
-        role: role,
-      });
+      let json = await axios.put(
+        "https://artket-pf-deploy.herokuapp.com/artworks/" + payload.id,
+        {
+          payload: payload,
+          role: role,
+        }
+      );
       toast.success(`Artwork modified`, {
         position: "top-center",
         theme: "light",
@@ -624,7 +628,10 @@ export async function resetPassword(payload) {
 }
 
 export async function changePassword(email) {
-  let json = await axios.post("https://artket-pf-deploy.herokuapp.com/users/restorePassword", { email });
+  let json = await axios.post(
+    "https://artket-pf-deploy.herokuapp.com/users/restorePassword",
+    { email }
+  );
   console.log(json);
 
   swal({
@@ -679,4 +686,3 @@ export const filterOrderRejected = () => {
     type: FILTER_ORDER_REJECTED,
   };
 };
-
