@@ -623,6 +623,18 @@ export async function resetPassword(payload) {
   );
 }
 
+export async function changePassword(email) {
+  let json = await axios.post("https://artket-pf-deploy.herokuapp.com/users/restorePassword", { email });
+  console.log(json);
+
+  swal({
+    title: "",
+    text: `The new password is ${json.data}`,
+    icon: "info",
+    buttons: "Nice",
+  });
+}
+
 export const banUser = () => {};
 
 export const madeAdminUser = () => {};
