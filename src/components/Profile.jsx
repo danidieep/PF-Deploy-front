@@ -35,9 +35,9 @@ export default function Profile() {
   };
   const onlyCharacters = /^[a-zA-Z\s]+$/;
 
-  useEffect(()=>{
-
-  },[])
+  useEffect(() => {
+    dispatch(findUserById(user[0].id));
+  }, []);
 
   const user = JSON.parse(localStorage.getItem("user"));
 

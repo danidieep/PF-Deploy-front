@@ -136,16 +136,8 @@ export default function MainPage(props) {
   };
 
   function alertNewslatter() {
-    toast.info("You have been suscribed to our newsletter!", {
-      position: "top-center",
-      theme: "dark",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+   
+    swal("Nice!", "You have been suscribed to our newsletter", "success")
   }
 
   return (
@@ -271,7 +263,7 @@ export default function MainPage(props) {
 
         <div className={styles.body}>
           <div className={styles.cardsContainer}>
-            <p className={styles.galeryTitle}>Galery</p>
+            <p className={styles.galeryTitle}>Gallery</p>
             {/* CARDS  */}
             <div className={styles.divFiltersContainer1}>
               <div className={styles.divFilters}>
@@ -462,8 +454,8 @@ export default function MainPage(props) {
         !userLocalStorage[0].isSuscribed ? (
           <div>
             <p className={styles.newsletter}>
-              Wana recive info about our lastest sales? Register to our
-              newsleter to be updated at every time
+            Do you want to receive information about our latest sales? Sign up to our
+              Newsletter to be updated at all times
             </p>
             <div className={styles.formNewsletter}>
               <button className={styles.btnSubscribe} onClick={handleSubscribe}>

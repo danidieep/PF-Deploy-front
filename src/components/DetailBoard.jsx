@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"
 import { deleteArtwork } from '../actions/index'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import swal from "sweetalert"
 
 export default function DetailBoard({ id }) {
   const dispatch = useDispatch()
@@ -15,16 +16,7 @@ export default function DetailBoard({ id }) {
   }
 
   function alertDeleteArtworkFromBoard() {
-    toast.success(`Artwork deleted from board`, {
-      position: "top-center",
-      theme: 'dark',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
+    swal(`Artwork deleted from board`)
   }
 
   return (

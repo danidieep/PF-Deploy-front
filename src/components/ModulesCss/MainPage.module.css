@@ -84,7 +84,7 @@ button {
     border-radius: 4px;
     width: 28%;
     color: white;
-    background-color: black;
+    background-color:  rgb(176, 119, 119);;
     margin: auto;
     display: flex;
     flex-flow: row wrap;
@@ -335,7 +335,7 @@ button {
     background-color: transparent;
     border: none;
     width: 7rem;
-
+    
 
 }
 
@@ -595,7 +595,7 @@ form .formNewsletterBox {
 .menuVert>li>button {
     display: block;
     z-index: inherit;
-    color: white;
+    color: rgb(222, 204, 204);
     text-decoration: none;
 }
 
@@ -605,19 +605,19 @@ form .formNewsletterBox {
     position: absolute;
     display: none;
     list-style: none;
-    background-color: black;
+    background-color: rgb(176, 119, 119);;
     border-radius: 3px;
 
 }
 
 .menuHor li:hover .menuVert {
     display: block;
-    color: #000000;
+    color:  rgb(222, 204, 204);
 }
 
 .menuVert li a {
     display: block;
-    color: white;
+    color:  rgb(222, 204, 204);
     padding: 15px 15px 15px 20px;
     text-decoration: none;
 
@@ -625,7 +625,7 @@ form .formNewsletterBox {
 
 
 .buttonsProf {
-    background-color: black;
+    background-color: rgb(176, 119, 119);;
     cursor: pointer;
     transition: 0.2s;
     width: 6.5rem;

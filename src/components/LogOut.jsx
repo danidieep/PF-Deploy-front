@@ -19,15 +19,7 @@ export default function LogOut() {
   const logOutLocal = () => {
     localStorage.setItem("user", JSON.stringify([]));
     dispatch(vaciarUser());
-    toast('See you later!', {
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    swal("See you later!", "", "success")
   };
 
   const logOutAuth0 = () => {
@@ -37,15 +29,7 @@ export default function LogOut() {
 
     localStorage.setItem("user", JSON.stringify([]))
     dispatch(vaciarUser())
-    toast('See you later!', {
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    swal("See you later!", "", "success")
 
   }
   const logInUser = () => {

@@ -117,16 +117,7 @@ export default function EditProfile() {
   };
 
   function alertWrongEmailFormat() {
-    toast.warning(`Wrong email format`, {
-      position: "top-center",
-      theme: "dark",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    swal("Error!", "Wrong email fromat", "error")
   }
 
   return (

@@ -81,16 +81,7 @@ export default function PayForm(data) {
   function handleSubmitChanged(e) {
     e.preventDefault();
     if (input.street === "" || input.number === "" || input.postalCode === "") {
-      toast.error("Complete de data", {
-        position: "top-center",
-        theme: "light",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      swal("Error", "Complete de data", "error")
     } else {
       putAdress(input, data.user[0].email);
       getPay(

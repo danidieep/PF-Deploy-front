@@ -9,6 +9,7 @@ import axios from "axios"
 import styles from "./ModulesCss/LogIn.module.css"
 import { Link } from "react-router-dom"
 import {GiSandsOfTime} from "react-icons/gi"
+import swal from "sweetalert"
 
 
 export default function PutArtwork() {
@@ -87,16 +88,7 @@ export default function PutArtwork() {
     if(input.title==="" && input.date==="" && input.collecting_institution===""
     && input.image==="" &&input.dimensions==="" && input.creator==="" && 
     input.medio==="" && input.price===""){
-      toast.error(`Complete the data`, {
-        position: "top-center",
-        theme: 'light',
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      })
+      swal("Error", "Complete de data", "error")
     }
     else{
     dispatch(putArtwork(input, user[0].role, user[0].role))

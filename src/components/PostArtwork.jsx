@@ -6,6 +6,7 @@ import axios from "axios";
 import styles from "./ModulesCss/LogIn.module.css";
 import { Link } from "react-router-dom";
 import {GiSandsOfTime} from "react-icons/gi"
+import swal from "sweetalert"
 
 export default function PostArtwork() {
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ export default function PostArtwork() {
   function handleSubmit(e, role) {
     e.preventDefault();
     if (Object.keys(errors).length !== 0) {
-      alert("Debes llenar el Formulario primero");
+      swal("Error", "Complete de data", "error")
     } else {
       dispatch(postArtwork(input, role));
       desactivado()

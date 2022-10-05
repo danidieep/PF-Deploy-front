@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import nodemailer from "nodemailer"
 import {GiSandsOfTime} from "react-icons/gi"
+import swal from "sweetalert"
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -81,29 +82,11 @@ export default function Register() {
   }
 
   function alertCompleteData() {
-    toast.warn(`Complete all the info`, {
-      position: "top-center",
-      theme: 'light',
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
+    swal("Error", "Complete de data", "error")
   }
 
   function alertWorngEmailFormat() {
-    toast.warn(`Wrong email format`, {
-      position: "top-center",
-      theme: 'light',
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
+    swal("Error", "Wrong email format", "error")
   }
 
   function handleSubmit(e) {

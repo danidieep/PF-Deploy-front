@@ -15,6 +15,7 @@ import LogOut from "./LogOut";
 import { BsFillHeartFill } from "react-icons/bs"
 import { BsFillCartFill } from "react-icons/bs"
 import { BsFillBagCheckFill } from "react-icons/bs";
+import swal from "sweetalert"
 
 export default function ShopCart() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -45,16 +46,7 @@ export default function ShopCart() {
   }, []);
 
   function alertDeleteFromCarrito() {
-    toast.success(`Artwork deleted from cart!`, {
-      position: "top-center",
-      theme: "light",
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    swal(":c", "Artwork deleted from cart", "info")
   }
 
   function alertItemBought() {

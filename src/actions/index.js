@@ -105,25 +105,9 @@ export function postArtwork(payload, role) {
           role: role,
         }
       );
-      toast.success("Artwork created", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      swal("Nice!", "Artwork created", "success")
     } catch (error) {
-      toast.error("Complete the data", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      swal("Error", "Complete de data", "error")
     }
   };
 }
@@ -136,15 +120,7 @@ export function deleteArtwork(id, user) {
       let json = await axios.put(
         "https://artket-pf-deploy.herokuapp.com/artworks/delete/" + id
       );
-      toast.info("Arwork deleted", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      swal("Nice!", "Artwork deleted", "success")
       return dispatch({
         type: DELETE_ARTWORKS,
         payload: json.data,
@@ -163,27 +139,9 @@ export function putArtwork(payload, role) {
           role: role,
         }
       );
-      toast.success(`Artwork modified`, {
-        position: "top-center",
-        theme: "light",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      swal("Nice", "Artwork modified", "success")
     } catch (error) {
-      toast.success(`Error`, {
-        position: "top-center",
-        theme: "light",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      swal("Error", "", "error")
     }
   };
 }
@@ -207,28 +165,18 @@ export const RegisterUser = async (payload) => {
       "https://artket-pf-deploy.herokuapp.com/users",
       payload
     );
-    toast.success("Registering...", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
+    swal({
+      title: "Good job!",
+      text: "You has been registered",
+      icon: "success",
+      buttons: ["Cancel", "Log in"],
+    }).then((respuesta) => {
+      if (respuesta) {
+        window.location.href = "/LocalLogin";
+      }
     });
-    setTimeout(() => {
-      window.location.href = "/LocalLogin";
-    }, 2000);
   } catch (error) {
-    toast.error("User allready exist!", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    swal("Error", "User allready registered", "error")
   }
 };
 
@@ -238,25 +186,9 @@ export const RegisterUserFromAdminPanel = async (payload) => {
       "https://artket-pf-deploy.herokuapp.com/users",
       payload
     );
-    toast.success("Registering...", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    swal("Nice", "You have created an user", "success")
   } catch (error) {
-    toast.error("User allready exist!", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    swal("Error", "User allready registered", "error")
   }
 };
 
@@ -503,28 +435,11 @@ export const LogLocal = (payload) => {
         type: LOG_LOCAL,
         payload: json.data,
       });
-      toast.success("Logging...", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
       setTimeout(() => {
         window.location.href = "/MainPage";
       }, 2000);
     } catch (error) {
-      toast.error("Wrong credentials", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      swal("Error", "Wrong credentials", "error")
     }
   };
 };
@@ -598,15 +513,7 @@ export async function postArtists(payload, role) {
         role: role,
       }
     );
-    toast.success("Artist Added", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    swal("Nice", "Artist created", "success")
   } catch (error) {
     toast.error("Complete the data", {
       position: "top-center",

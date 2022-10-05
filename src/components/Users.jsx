@@ -23,6 +23,8 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiUserCircle } from "react-icons/bi";
 import { BiShield } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
+import { Loader } from "./Loader";
+
 
 export default function Users() {
   const data = useAuth0();
@@ -123,29 +125,11 @@ export default function Users() {
   }
 
   function alertCompleteData() {
-    toast.warn(`Complete all the info`, {
-      position: "top-center",
-      theme: "light",
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    swal("Error", "Complete de data", "error")
   }
 
   function alertWorngEmailFormat() {
-    toast.warn(`Wrong email format`, {
-      position: "top-center",
-      theme: "light",
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    swal("Error", "Wrong email format", "error")
   }
 
   function handleSubmit(e) {
@@ -393,7 +377,7 @@ export default function Users() {
             <br />
           </div>
         ) : (
-          <div>Loading</div>
+          <div>{Loader}</div>
         )}
       </div>
     </div>
