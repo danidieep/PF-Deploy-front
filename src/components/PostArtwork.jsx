@@ -36,10 +36,12 @@ export default function PostArtwork() {
 
 
   const desactivado = () =>{
-    setEstado(true)
-    setTimeout(() => {
+    while(image===""){
+      setEstado(true)
+    
+    }
       setEstado(false)
-    }, 2500);
+  
 
   }
   function handleChange(e) {

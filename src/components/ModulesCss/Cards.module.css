@@ -8,7 +8,7 @@
     margin: 1rem auto;
     transition: .3s;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     box-shadow: 0rem 0rem 1rem rgb(0, 0, 0, 0.18);
     border-radius: 6px;
 
@@ -71,16 +71,18 @@
 
 .img {
 
-    margin: 5rem;
+    margin-left: 9rem;
     transition: 400ms;
-    box-shadow: 0rem 0rem 1rem rgb(0, 0, 0, 0.3);
+    box-shadow: 0rem 0rem 1rem rgb(0 0 0 / 30%);
     border-radius: 0.2rem;
-    max-width: 60%;
+    min-width: auto;
 }
 
 @media (max-width: 414px) {
     .img {
-        max-height: 14rem;
+        margin-left: 5rem;
+        max-height: 10rem;
+        max-width: 9rem;
     }
 }
 
@@ -131,11 +133,13 @@
 }
 
 .allwithoutimage {
+    margin-left: 4rem;
     width: 26rem;
 }
 
 @media (max-width: 414px) {
     .allwithoutimage {
+        margin-left: 0rem;
         max-width: 30%;
     }
 }

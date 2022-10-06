@@ -19,12 +19,6 @@ export default function PutArtwork() {
   const [estado, setEstado] = useState(false);
 
 
-  const load = () =>{
-    setEstado(true);
-    setTimeout(() => {
-      setEstado(false)
-    }, 2500);
-  }
 
   const dispatch = useDispatch()
   const product = useSelector((state) => state.productDetails)
@@ -48,6 +42,13 @@ export default function PutArtwork() {
   })
 
 
+  const load = () =>{
+    while(image===""){
+     setEstado(true);
+    
+   }
+      setEstado(false)
+  }
   function handleChange(e) {
     setInput({
       ...input,

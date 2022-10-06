@@ -80,17 +80,22 @@ export default function EditProfile() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    alertaDeGuardar();
+    if(input.name==="" & input.image==="" && input.lastname){
+      swal("Error!", "Complete the data", "error")
+    }else{
+    alertaDeGuardar();}
   }
 
   const [loading, setLoading] = useState(false);
 
 
   const load = () => {
-    setLoading(true);
-    setTimeout(() => {
+    while(image===""){
+      setLoading(true);
+    
+    }
       setLoading(false)
-    }, 2000);
+  
   }
 
 
