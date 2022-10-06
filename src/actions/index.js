@@ -390,7 +390,7 @@ export const sendUserInfo = async ({
 };
 
 export function deleteUser(userId, ban) {
-  axios.post(`https://artket-pf-deploy.herokuapp.com/users/${userId}`, { ban });
+  axios.put(`https://artket-pf-deploy.herokuapp.com/users/${userId}`, { ban });
 }
 
 export const getProductsFromCarritoDB = (payload) => {
