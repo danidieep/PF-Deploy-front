@@ -78,55 +78,55 @@ function App() {
       <Route path="/MainPage">
        {isAuthenticated && !uls.length?<UserBanned/> : <MainPage/>}
       </Route>
-      <Route path="/Products/:id" component={CardDetails}>
+      <Route path="/Products/:id">
       {isAuthenticated && !uls.length?<UserBanned/> : <CardDetails/>}
       </Route>
-      <Route path="/LocalRegister" component={RegisterLocal} >
+      <Route path="/LocalRegister" >
       {isAuthenticated && !uls.length || !isAuthenticated && uls.length?<UserBanned/> : <RegisterLocal/>}
       </Route>
-      <Route path="/LocalLogin" component={LoginLocal} >
+      <Route path="/LocalLogin"  >
       {isAuthenticated && !uls.length?<UserBanned/> : <LoginLocal/>}
       </Route>
-      <Route path="/Profile" component={Profile} >
+      <Route path="/Profile" >
       {isAuthenticated && !uls.length?<UserBanned/> : <Profile/>}
       </Route>
-      <Route path="/ShopCart" component={ShopCart} >
+      <Route path="/ShopCart" >
       {isAuthenticated && !uls.length?<UserBanned/> : <ShopCart/>}
       </Route>
-      <Route path="/PutArtwork/:id" component={PutArtwork} >
+      <Route path="/PutArtwork/:id" >
       {isAuthenticated && !uls.length?<UserBanned/> : <PutArtwork/>}
       </Route>
-      <Route path="/PostArtwork" component={PostArtwork} >
+      <Route path="/PostArtwork"  >
       {isAuthenticated && !uls.length?<UserBanned/> : <PostArtwork/>}
       </Route>
-      <Route path="/ArtworksSoldout" component={ArtworksSoldout}>
+      <Route path="/ArtworksSoldout" >
       {isAuthenticated && !uls.length?<UserBanned/> : <ArtworksSoldout/>}
       </Route>
-      <Route path="/Users" component={Users}>
+      <Route path="/Users" >
       {isAuthenticated && !uls.length?<UserBanned/> : <Users/>}
       </Route>
-      <Route path="/PostArtist" component={ArtistsPost} >
+      <Route path="/PostArtist" >
       {isAuthenticated && !uls.length?<UserBanned/> : <ArtistsPost/>}
       </Route>
-      <Route path="/Favourites" component={Favoritos} >
+      <Route path="/Favourites" >
       {isAuthenticated && !uls.length?<UserBanned/> : <Favoritos/>}
       </Route>
-      <Route path="/ProfileEdit" component={EditProfile} >
+      <Route path="/ProfileEdit"  >
       {isAuthenticated && !uls.length?<UserBanned/> : <EditProfile/>}
       </Route>
-      <Route path="/Security/" component={Security} >
+      <Route path="/Security/"  >
       {isAuthenticated && !uls.length?<UserBanned/> : <Security/>}
       </Route>
-      <Route path="/ResetPassword" component={ResetPassword} >
+      <Route path="/ResetPassword"  >
       {isAuthenticated && !uls.length?<UserBanned/> : <ResetPassword/>}
       </Route>
-      <Route path="/PayForm" component={PayForm}>
+      <Route path="/PayForm" >
       {isAuthenticated && !uls.length?<UserBanned/> : <PayForm/>}
       </Route>
-      <Route path="/AllUserOrders" component={AllUserOrders}>
+      <Route path="/AllUserOrders" >
       {isAuthenticated && !uls.length?<UserBanned/> : <AllUserOrders/>}
       </Route>
-      <Route path="/OrderByUser" component={OrderByUser}>
+      <Route path="/OrderByUser" >
       {isAuthenticated && !uls.length?<UserBanned/> : <OrderByUser/>}
       </Route>
     </div>
