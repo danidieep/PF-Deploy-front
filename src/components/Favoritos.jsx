@@ -1,69 +1,65 @@
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProductFromFavourites, getFavourites, } from "../actions";
+import {
+  deleteProductFromFavourites,
+  getFavourites,
+  getProductsFromCarritoDB,
+} from "../actions";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import styles from './ModulesCss/Carrito.module.css'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import styles from "./ModulesCss/Carrito.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import LogOut from "./LogOut";
-import { BsFillHeartFill } from "react-icons/bs"
-import { BsFillCartFill } from "react-icons/bs"
+import { BsFillHeartFill } from "react-icons/bs";
+import { BsFillCartFill } from "react-icons/bs";
 import { BsFillBagCheckFill } from "react-icons/bs";
-import swal from 'sweetalert'
-
-
+import swal from "sweetalert";
 
 export default function Favoritos() {
-
-  const user = JSON.parse(localStorage.getItem("user"))
-  const favoritos = useSelector((state) => state.favoritos)
+  const user = JSON.parse(localStorage.getItem("user"));
+  const favoritos = useSelector((state) => state.favoritos);
   const dispatch = useDispatch();
-  const carrito = useSelector((state) => state.carrito)
-  const email = JSON.parse(localStorage.getItem("user"))[0].email
-
+  const carrito = useSelector((state) => state.carrito);
+  const email = JSON.parse(localStorage.getItem("user"))[0].email;
 
   const eliminar = (id) => {
-    deleteProductFromFavourites({ artId: id, email },)
+    deleteProductFromFavourites({ artId: id, email });
 
-    swal("Ooh :c!", "Artwork added to cart!", "success")
+    swal("Ooh :c!", "Artwork deleted from favourites!", "success");
 
     setTimeout(() => {
-      dispatch(getFavourites(email))
+      dispatch(getFavourites(email));
     }, 1000);
-
-  }
-
+  };
 
   useEffect(() => {
     dispatch(getFavourites(user[0].email));
+    dispatch(getProductsFromCarritoDB(user[0].email));
   }, []);
 
   return (
     <div className={styles.containerCarrito}>
-      <header >
+      <header>
         <div className={styles.header}>
           <div className={styles.filtersDiv}>
-            <Link className={styles.link} to='/mainpage'>
-              <button className={styles.logoDetails}
-              ><h2 className={styles.logo}>Artket</h2></button>
+            <Link className={styles.link} to="/mainpage">
+              <button className={styles.logoDetails}>
+                <h2 className={styles.logo}>Artket</h2>
+              </button>
             </Link>
           </div>
-          <div><h1 className={styles.divTittle}>Favorites</h1></div>
-          <div className={styles.cartAndProfileAndFav} >
-            {JSON.parse(localStorage.getItem("user")).length ?
+          <div>
+            <h1 className={styles.divTittle}>Favorites</h1>
+          </div>
+          <div className={styles.cartAndProfileAndFav}>
+            {JSON.parse(localStorage.getItem("user")).length ? (
               <div className={styles.CartAndFav}>
-
-
                 <div className={styles.iconsHeader}>
                   <Link to="/ShopCart">
-
                     <button className={styles.btnCarrito}>
                       <BsFillCartFill />
                       <h4 className={styles.cantItems}>{carrito.length}</h4>
                     </button>
-
-
-
                   </Link>
                 </div>
                 <div className={styles.iconsHeader}>
@@ -72,15 +68,12 @@ export default function Favoritos() {
                       <BsFillHeartFill />
                       <h4 className={styles.cantItems}>{favoritos.length}</h4>
                     </button>
-
                   </Link>
                 </div>
                 <div className={styles.iconsHeader}>
                   <Link to="/OrderByUser">
                     <button className={styles.btnFav}>
-                      <BsFillBagCheckFill
-                        style={{ marginBottom: "0.45rem" }}
-                      />
+                      <BsFillBagCheckFill style={{ marginBottom: "0.45rem" }} />
                     </button>
                   </Link>
                 </div>
@@ -88,32 +81,25 @@ export default function Favoritos() {
                   <LogOut></LogOut>
                 </div>
               </div>
-              : false
-            }
-
-
-
-
+            ) : (
+              false
+            )}
           </div>
-
-
         </div>
       </header>
       <div className={styles.yourCarrito}>
         <ToastContainer />
-
-
       </div>
-      {
-        favoritos.length === 0 ?
-          <div className={styles.favEmpty}>
-            <div>
-              <p>You have nothing on your favorites list.</p>
-              <p>Don't know what to buy? Lots of arkwort are waiting for you!</p>
-            </div>
+      {favoritos.length === 0 ? (
+        <div className={styles.favEmpty}>
+          <div>
+            <p>You have nothing on your favorites list.</p>
+            <p>Don't know what to buy? Lots of arkwort are waiting for you!</p>
           </div>
-          : false
-      }
+        </div>
+      ) : (
+        false
+      )}
 
       {favoritos.map((element) => {
         return (
@@ -124,14 +110,22 @@ export default function Favoritos() {
               </Link>
               <h1 className={styles.titleCarrito}>{element.title}</h1>
               <h5 className={styles.titleBy}>by {element.creator}</h5>
+
+              {element.show === true ? null : (
+                <h5 className={styles.titleBy}>Sold out</h5>
+              )}
+
               <h1 className={styles.priceCarrito}> ${element.price}</h1>
               <div className={styles.btnCarritoPos}>
-                <button className={styles.btnBuyAll} onClick={() => eliminar(element.id)}>Delete</button>
+                <button
+                  className={styles.btnBuyAll}
+                  onClick={() => eliminar(element.id)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>
-
-
         );
       })}
       <div className={styles.btnHomePos}>
@@ -139,7 +133,6 @@ export default function Favoritos() {
           <button className={styles.btnHome}>Home</button>
         </Link> */}
       </div>
-
     </div>
-  )
+  );
 }

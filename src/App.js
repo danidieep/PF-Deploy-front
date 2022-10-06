@@ -82,7 +82,7 @@ function App() {
       {isAuthenticated && !uls.length?<UserBanned/> : <CardDetails/>}
       </Route>
       <Route path="/LocalRegister" component={RegisterLocal} >
-      {isAuthenticated && !uls.length?<UserBanned/> : <RegisterLocal/>}
+      {isAuthenticated && !uls.length || !isAuthenticated && uls.length?<UserBanned/> : <RegisterLocal/>}
       </Route>
       <Route path="/LocalLogin" component={LoginLocal} >
       {isAuthenticated && !uls.length?<UserBanned/> : <LoginLocal/>}

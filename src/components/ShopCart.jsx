@@ -3,6 +3,7 @@ import {
   getProductsFromCarritoDB,
   deleteProductFromCarrito,
   getPay,
+  getFavourites
 } from "../actions";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -43,6 +44,8 @@ export default function ShopCart() {
 
   useEffect(() => {
     dispatch(getProductsFromCarritoDB(user[0].email));
+    dispatch(getFavourites(user[0].email));
+    
   }, []);
 
   function alertDeleteFromCarrito() {
