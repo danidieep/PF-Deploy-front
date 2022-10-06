@@ -238,7 +238,7 @@ export default function CardDetails(props) {
                       </h3>
                       <div className={styles.buttonAddCartPos}>
                         <div className={styles.btnsDetailsPos}>
-                          {user.length && !esta ? (
+                          {user.length && !esta && product[0].show? (
                             <button
                               disabled={estado}
                               className={styles.buttonAddCart}
