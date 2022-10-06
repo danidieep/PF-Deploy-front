@@ -105,24 +105,20 @@ export default function Favoritos() {
         return (
           <div className={styles.allCarritoContainer}>
             <div className={styles.carrito}
-            style={element.show === false ? {backgroundColor:"black", opacity:"0.3",color:"white"} : {backgroundColor: "white"} }
+            style={element.show === false ? {opacity:"0.3",color:"black"} : {backgroundColor: "white"} }
             >
               <Link to={`/Products/${element.id}`}>
                 <img className={styles.imgCarrito} src={element.image} alt="" />
               </Link>
               <h1 className={styles.titleCarrito}>{element.title}</h1>
               <h5 className={styles.titleBy}>by {element.creator}</h5>
-
-              {element.show === true ? null : (
-                <h6 className={styles.titleBy}>Sold out</h6>
-              )}
-
               <h1 className={styles.priceCarrito}> ${element.price}</h1>
               <div className={styles.btnCarritoPos}>
                 <button
                   className={styles.btnBuyAll}
                   onClick={() => eliminar(element.id)}
-                >
+                  style={{color:"black"}}
+                  > 
                   Delete
                 </button>
               </div>
