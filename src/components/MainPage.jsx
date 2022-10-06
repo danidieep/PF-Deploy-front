@@ -57,8 +57,8 @@ export default function MainPage(props) {
   // const user = JSON.parse(localStorage.getItem("user"))
 
   React.useEffect(() => {
-     dispatch(getProducts());
-     dispatch(getArtists());
+    if (state.filters.length === 0) dispatch(getProducts());
+    if (state.filters.length === 0) dispatch(getArtists());
     applyFilter();
     // if (user && user.length) dispatch(getProductsFromCarritoDB(user[0].email));
     if (userLocalStorage && userLocalStorage.length)
