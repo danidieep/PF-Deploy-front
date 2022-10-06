@@ -53,13 +53,13 @@ export default function LogOut() {
         localStorage.setItem("user", JSON.stringify([]));
         logout();
         setTimeout(() => {
-          window.location.reload()
+          window.location.href="/MainPage"
         }, 300);
       } else if (respuesta && userLocalStorage.length) {
         console.log("asdads")
         localStorage.setItem("user", JSON.stringify([]));
         setTimeout(() => {
-          window.location.reload()
+          window.location.href="/MainPage"
         }, 300);
 
       }

@@ -105,7 +105,7 @@ export default function Favoritos() {
         return (
           <div className={styles.allCarritoContainer}>
             <div className={styles.carrito}
-            style={element.show === true ? {backgroundColor:"black", opacity:"0.7"} : {backgroundColor: "white"} }
+            style={element.show === false ? {backgroundColor:"black", opacity:"0.3",color:"white"} : {backgroundColor: "white"} }
             >
               <Link to={`/Products/${element.id}`}>
                 <img className={styles.imgCarrito} src={element.image} alt="" />
