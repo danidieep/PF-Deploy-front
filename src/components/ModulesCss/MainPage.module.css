@@ -204,13 +204,13 @@ button {
     max-height: 60rem;
     margin: auto;
     overflow: hidden;
-    width: 70%;
+    width: 100%;
     margin-top: 3rem;
     margin-bottom: 3rem;
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
     padding: 3rem;
     border-radius: 1rem;
-    border: solid 1px;
+    /* border: solid 1px; */
 
 }
 
@@ -681,7 +681,8 @@ form .formNewsletterBox {
     width: 70rem;
     transition: 0.3s;
     cursor: pointer;
-    border: solid 1px;
+    background-color: rgba(87, 61, 61, 0.6);
+    /* border: solid 1px; */
 
 }
 

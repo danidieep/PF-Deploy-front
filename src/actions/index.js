@@ -204,10 +204,7 @@ export const getProductByName = (payload) => {
         payload: json.data,
       });
     } catch (error) {
-      return dispatch({
-        type: NOT_FOUND,
-        payload: error,
-      });
+      swal("Error", "Artwork not found", "error");
     }
   };
 };

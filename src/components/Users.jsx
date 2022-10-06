@@ -51,8 +51,25 @@ export default function Users() {
 
   const alertaDeEliminar = (user, ban) => {
     swal({
-      title: "Delete",
+      title: "Ban user",
       text: "Are you sure you want to ban this user?",
+      icon: "warning",
+      buttons: ["Cancel", "Accept"],
+    }).then((respuesta) => {
+      if (respuesta) {
+        deleteUser(user, ban);
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 300);
+      }
+    });
+  };
+
+  const alertaDeRestaurar = (user, ban) => {
+    swal({
+      title: "Unban user",
+      text: "Are you sure you want to Unban this user?",
       icon: "warning",
       buttons: ["Cancel", "Accept"],
     }).then((respuesta) => {
@@ -289,12 +306,23 @@ export default function Users() {
                         >
                           Restore Password
                         </button>
+                 {!e.ban ?     
                         <button
                           className={styles.buttonRegister}
                           onClick={() => alertaDeEliminar(e.id, e.ban)}
                         >
-                          {!e.ban ? "Ban user" : "Unban user"}
+                         Ban user
                         </button>
+                        :
+                        <button
+                        className={styles.buttonRegister}
+                        onClick={() => alertaDeRestaurar(e.id, e.ban)}
+                      >
+                       Unban user
+                      </button>
+
+
+                        }
                       </div>
                     ) : (
                       false
