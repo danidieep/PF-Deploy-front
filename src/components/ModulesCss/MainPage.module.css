@@ -222,7 +222,7 @@ button {
     animation: cambio 220s infinite;
     animation-timing-function: ease;
     align-items: center;
-
+    height: 20rem
 
 }
 
