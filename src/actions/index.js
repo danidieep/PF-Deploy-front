@@ -105,9 +105,9 @@ export function postArtwork(payload, role) {
           role: role,
         }
       );
-      swal("Nice!", "Artwork created", "success")
+      swal("Nice!", "Artwork created", "success");
     } catch (error) {
-      swal("Error", "Complete de data", "error")
+      swal("Error", "Complete de data", "error");
     }
   };
 }
@@ -120,7 +120,7 @@ export function deleteArtwork(id, user) {
       let json = await axios.put(
         "https://artket-pf-deploy.herokuapp.com/artworks/delete/" + id
       );
-      swal("Nice!", "Artwork deleted", "success")
+      swal("Nice!", "Artwork deleted", "success");
       return dispatch({
         type: DELETE_ARTWORKS,
         payload: json.data,
@@ -139,9 +139,9 @@ export function putArtwork(payload, role) {
           role: role,
         }
       );
-      swal("Nice", "Artwork modified", "success")
+      swal("Nice", "Artwork modified", "success");
     } catch (error) {
-      swal("Error", "", "error")
+      swal("Error", "", "error");
     }
   };
 }
@@ -176,7 +176,7 @@ export const RegisterUser = async (payload) => {
       }
     });
   } catch (error) {
-    swal("Error", "User allready registered", "error")
+    swal("Error", "User allready registered", "error");
   }
 };
 
@@ -186,9 +186,9 @@ export const RegisterUserFromAdminPanel = async (payload) => {
       "https://artket-pf-deploy.herokuapp.com/users",
       payload
     );
-    swal("Nice", "You have created an user", "success")
+    swal("Nice", "You have created an user", "success");
   } catch (error) {
-    swal("Error", "User allready registered", "error")
+    swal("Error", "User allready registered", "error");
   }
 };
 
@@ -389,8 +389,10 @@ export const sendUserInfo = async ({
   });
 };
 
-export function deleteUser(userId, ban) {
-  axios.put(`https://artket-pf-deploy.herokuapp.com/users/${userId}`, { ban });
+export async function deleteUser(userId, ban) {
+  await axios.put(`https://artket-pf-deploy.herokuapp.com/users/${userId}`, {
+    ban,
+  });
 }
 
 export const getProductsFromCarritoDB = (payload) => {
@@ -439,7 +441,7 @@ export const LogLocal = (payload) => {
         window.location.href = "/MainPage";
       }, 2000);
     } catch (error) {
-      swal("Error", "Wrong credentials", "error")
+      swal("Error", "Wrong credentials", "error");
     }
   };
 };
@@ -513,7 +515,7 @@ export async function postArtists(payload, role) {
         role: role,
       }
     );
-    swal("Nice", "Artist created", "success")
+    swal("Nice", "Artist created", "success");
   } catch (error) {
     toast.error("Complete the data", {
       position: "top-center",
