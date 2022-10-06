@@ -155,7 +155,7 @@ export default function CardDetails(props) {
   }
 
   function alertDeleteFromFavouritesAtDetails() {
-    swal(":|", "Artwork added to favourites!", "info");
+    swal(":|", "Artwork deleted from favourites!", "info");
   }
 
   return (

@@ -52,7 +52,7 @@ export default function Users() {
   const alertaDeEliminar = (user, ban) => {
     swal({
       title: "Delete",
-      text: "Are you sure you want to delete your profile?",
+      text: "Are you sure you want to ban this user?",
       icon: "warning",
       buttons: ["Cancel", "Accept"],
     }).then((respuesta) => {

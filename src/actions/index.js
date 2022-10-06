@@ -390,7 +390,7 @@ export const sendUserInfo = async ({
 };
 
 export async function deleteUser(userId, ban) {
-  await axios.put(`https://artket-pf-deploy.herokuapp.com/users/${userId}`, {
+  await axios.put(`https://artket-pf-deploy.herokuapp.com/users/ban/${userId}`, {
     ban,
   });
 }
