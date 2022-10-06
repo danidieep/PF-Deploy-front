@@ -219,7 +219,7 @@ button {
     display: flex;
     padding: 0;
     width: 500%;
-    animation: cambio 280s infinite;
+    animation: cambio 330s infinite;
     animation-timing-function: ease;
     align-items: center;
     height: 20rem
@@ -242,7 +242,7 @@ button {
         margin-left: -10%;
     }
     50%{
-        margin-left: -850%;
+        margin-left: -650%;
     }
 
     100%{

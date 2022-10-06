@@ -104,7 +104,9 @@ export default function Favoritos() {
       {favoritos.map((element) => {
         return (
           <div className={styles.allCarritoContainer}>
-            <div className={styles.carrito}>
+            <div className={styles.carrito}
+            style={element.show === true ? {backgroundColor:"black", opacity:"0.7"} : {backgroundColor: "white"} }
+            >
               <Link to={`/Products/${element.id}`}>
                 <img className={styles.imgCarrito} src={element.image} alt="" />
               </Link>
@@ -112,7 +114,7 @@ export default function Favoritos() {
               <h5 className={styles.titleBy}>by {element.creator}</h5>
 
               {element.show === true ? null : (
-                <h5 className={styles.titleBy}>Sold out</h5>
+                <h6 className={styles.titleBy}>Sold out</h6>
               )}
 
               <h1 className={styles.priceCarrito}> ${element.price}</h1>

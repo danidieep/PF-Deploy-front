@@ -242,13 +242,17 @@ export default function MainPage(props) {
                 <div>
                   <ul>
                     {state.productsFiltered
-                      .slice(num1, num2)
-                      .slice(0, 5)
+                      // .slice(num1, num2)
+                      // .slice(0, 5)
                       .map((element) => {
                         return (
-                          <li>
-                            <img src={element.image}></img>
-                          </li>
+                          <div className={styles.imagenCarrusel}>
+                          <Link to={`/Products/${element.id}`}>
+                        <li>
+                          <img src={element.image}></img>
+                        </li>
+                        </Link>
+                        </div>
                         );
                       })}
                   </ul>
