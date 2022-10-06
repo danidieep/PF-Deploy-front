@@ -43,12 +43,12 @@ export default function PutArtwork() {
 
 
   const load = () =>{
-    while(input.image===""){
-     setEstado(true);
-    
-   }
+    setEstado(true)
+    setTimeout(() => {
       setEstado(false)
+    }, 6000);
   }
+
   function handleChange(e) {
     setInput({
       ...input,

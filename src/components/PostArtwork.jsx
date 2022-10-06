@@ -36,14 +36,12 @@ export default function PostArtwork() {
 
 
   const desactivado = () =>{
-    while(input.image===""){
-      setEstado(true)
-    
-    }
+    setEstado(true)
+    setTimeout(() => {
       setEstado(false)
-  
-
+    }, 6000);
   }
+
   function handleChange(e) {
     setInput({
       ...input,

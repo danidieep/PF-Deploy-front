@@ -90,11 +90,11 @@ export default function EditProfile() {
 
 
   const load = () => {
-    while(input.image===""){
-      setLoading(true);
-    
-    }
+    setLoading(true)
+    setTimeout(() => {
       setLoading(false)
+    }, 6000);
+      
   
   }
 
