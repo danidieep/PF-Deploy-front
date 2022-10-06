@@ -302,21 +302,21 @@ export default function Users() {
 
                         <button
                           className={styles.buttonRegister}
-                          onClick={() => alertaDeCambioPass(e.email)}
+                          onClick={(e) => alertaDeCambioPass(e.email)}
                         >
                           Restore Password
                         </button>
                  {!e.ban ?     
                         <button
                           className={styles.buttonRegister}
-                          onClick={() => alertaDeEliminar(e.id, e.ban)}
+                          onClick={(e) => alertaDeEliminar(e.id, e.ban)}
                         >
                          Ban user
                         </button>
                         :
                         <button
                         className={styles.buttonRegister}
-                        onClick={() => alertaDeRestaurar(e.id, e.ban)}
+                        onClick={(e) => alertaDeRestaurar(e.id, e.ban)}
                       >
                        Unban user
                       </button>
