@@ -90,7 +90,7 @@ export default function EditProfile() {
 
 
   const load = () => {
-    while(image===""){
+    while(input.image===""){
       setLoading(true);
     
     }

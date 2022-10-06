@@ -43,7 +43,7 @@ export default function PutArtwork() {
 
 
   const load = () =>{
-    while(image===""){
+    while(input.image===""){
      setEstado(true);
     
    }
