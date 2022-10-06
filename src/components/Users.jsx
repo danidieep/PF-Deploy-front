@@ -60,7 +60,7 @@ export default function Users() {
         deleteUser(user, ban);
 
         setTimeout(() => {
-          window.location.reload();
+          dispatch(getUSers({ role: user[0].role }));
         }, 300);
       }
     });
@@ -77,7 +77,7 @@ export default function Users() {
         deleteUser(user, ban);
 
         setTimeout(() => {
-          window.location.reload();
+          dispatch(getUSers({ role: user[0].role }));
         }, 300);
       }
     });
@@ -302,21 +302,21 @@ export default function Users() {
 
                         <button
                           className={styles.buttonRegister}
-                          onClick={(e) => alertaDeCambioPass(e.email)}
+                          onClick={() => alertaDeCambioPass(e.email)}
                         >
                           Restore Password
                         </button>
                  {!e.ban ?     
                         <button
                           className={styles.buttonRegister}
-                          onClick={(e) => alertaDeEliminar(e.id, e.ban)}
+                          onClick={() => alertaDeEliminar(e.id, e.ban)}
                         >
                          Ban user
                         </button>
                         :
                         <button
                         className={styles.buttonRegister}
-                        onClick={(e) => alertaDeRestaurar(e.id, e.ban)}
+                        onClick={() => alertaDeRestaurar(e.id, e.ban)}
                       >
                        Unban user
                       </button>
