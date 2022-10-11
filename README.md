@@ -1,35 +1,12 @@
-This repository is the frontend of a project that I did with my partners. This project is a website where we sell artwork. On this site, the client can find artwork and buy it and other functions like registering, logging and filtering the work of art.
+## Artket
+  <link rel="apple-touch-icon" href="./assets/LandingPage.png" />
+
+
+## Introduction
+This repository is the frontend of a project that I did with my partners. This project is a website where we sell artwork. 
 Im decided to separate the repositorie of the project in the folder of backend and the frontend because its easier for the deveployment.
 For the deployment of this folder, I used a site called Vercel.
 You can visit the repository of the backend in my profile if you wish.
-
-
-
-# Repaso PI 
-## Rick and Morty
-<p align='left'>
-    <img src='https://www.vodafone.es/c/statics/imagen/img_OG_Rick_y_Morty_T4_V2.jpg' </img>
-</p>
-
-## Objetivos del Proyecto
-Construir una App utlizando React, Redux, Node y Sequelize.
-
-## Comenzando
-1. Forkear el repositorio para tener una copia del mismo en sus cuentas
-2. Clonar el repositorio en sus computadoras para comenzar a trabajar
-
-Tendrán un boilerplate con la estructura general tanto del servidor como de cliente.
-
-***IMPORTANTE:*** Es necesario contar minimamente con la última versión estable de Node y NPM. Asegurarse de contar con ella para poder instalar correctamente las dependecias necesarias para correr el proyecto.
-
-Actualmente las versiónes necesarias son:
-
-Node: 12.18.3 o mayor NPM: 6.14.16 o mayor Para verificar que versión tienen instalada:
-```
-node -v
-
-npm -v
-```
 
 ## BoilerPlate
 El boilerplate cuenta con dos carpetas: ```api``` y ```client```. En estas carpetas estará el código del back-end y el front-end respectivamente.
