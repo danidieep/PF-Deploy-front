@@ -2,6 +2,9 @@
 
 <img src="./assets/LandingPage.png"> </img>
 
+This is the deployment:
+https://artket.vercel.app/
+
 ## Introduction
 
 This repository is the frontend of a project that I did with my partners. This project is a website where we sell artwork.
