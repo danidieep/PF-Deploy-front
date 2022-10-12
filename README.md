@@ -24,11 +24,25 @@ The website has the next a Landing Page.
 
 The user can register and login.
 **Register**
-<img src="./assets/Register.png.png"> </img>
+<img src="./assets/Register.png"> </img>
 
 **Login**
 <img src="./assets/Login.png"> </img>
 The user can log in with her credentials or with a google account.
+
+**Main Page**
+<img src="./assets/MainPage.gif"> </img>
+The user can scroll to find any artwork, filter by price, artist and medium, and also can find the work by the name.
+From the main page, the user can access to the cart, favourites, orders,the profile and the detail.
+
+**Detail**
+<img src="./assets/Detail.png"> </img>
+From here the user can aggregate the work to his cart or favourites.
+
+**Orders**
+<img src="./assets/Orders.png"> </img>
+
+
 
 
 
