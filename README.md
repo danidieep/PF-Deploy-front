@@ -15,10 +15,22 @@ The content of this folder was created with Create React App.
 
 ***Technologies:***
 The content of this folder was created with Create React App.
-
-Technologies: 
 We use the next technologies for this project: **Backend**: Node, Express, PostgreSQL, and Javascript. **Frontend**: JavaScript, Reac, Redux, CSS, HTML. Also we use others technologies like Auth0, sweetalert, bcrypt, JSON Web Token, Mercado Pago.
 
-## Enunciado
+## App
+
+The website has the next a Landing Page.
+<img src="./assets/LandingPage.png"> </img>
+
+The user can register and login.
+**Register**
+<img src="./assets/Register.png.png"> </img>
+
+**Login**
+<img src="./assets/Login.png"> </img>
+The user can log in with her credentials or with a google account.
+
+
+
 
 
