@@ -14,10 +14,10 @@ You can visit the repository of the backend in my profile if you wish.
 The content of this folder was created with Create React App.
 
 ***Technologies:***
-We use the next technologies for this project: 
--Backend: Node, Express, PostgreSQL, Javascript.
--Frontend: JavaScript, Reac, Redux, CSS, HTML.
-Also we use anothers for others tasks like Auth0, sweetalert, bcrypt, JSON Web Token, Mercado Pago.
+The content of this folder was created with Create React App.
+
+Technologies: 
+We use the next technologies for this project: **Backend**: Node, Express, PostgreSQL, and Javascript. **Frontend**: JavaScript, Reac, Redux, CSS, HTML. Also we use others technologies like Auth0, sweetalert, bcrypt, JSON Web Token, Mercado Pago.
 
 ## Enunciado
 
