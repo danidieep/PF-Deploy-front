@@ -39,8 +39,12 @@ From the main page, the user can access to the cart, favourites, orders,the prof
 <img src="./assets/Detail.png"> </img>
 From here the user can aggregate the work to his cart or favourites.
 
-**Orders**
-<img src="./assets/Orders.png"> </img>
+**Profile**
+<img src="./assets/UserInfo.png"> </img>
+The user can see their information and change name, lastname, image, password.
+
+**Cart**
+<img src="./assets/Carrito.png"> </img>
 
 
 
